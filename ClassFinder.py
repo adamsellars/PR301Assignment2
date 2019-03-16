@@ -3,11 +3,9 @@ import re
 
 
 class ClassFinder:
-
     classList = []
 
-    @staticmethod
-    def findClass(file_data):
+    def find_class(file_data):
         listOfCapitalWords = []
         listOfWords = file_data.split()
 
@@ -27,7 +25,7 @@ class ClassFinder:
             elif ":" == listOfWords[i]:
                 if (listOfWords[i - 1].isalpha()) and (listOfWords[i - 1][0].islower()) and (listOfWords[i + 1].isalpha):
                     attribute = listOfWords[i - 1] + " " + listOfWords[i] + " " + listOfWords[i + 1]
-                    ClassFinder.classList[-1].addAttribute(attribute)
+                    ClassFinder.classList[-1].add_attribute(attribute)
             # Add methods
             elif "(" in listOfWords[i]:
                 partOfMethod = ""
@@ -49,20 +47,13 @@ class ClassFinder:
                     method = partOfMethod + listOfWords[i + 1] + " " + listOfWords[i + 2]
                 else:
                     method = partOfMethod
-                ClassFinder.classList[-1].addMethod(method)
+                ClassFinder.classList[-1].add_method(method)
 
-    @staticmethod
-    def displayMyClasses():
+    def display_my_classes():
         for aClass in ClassFinder.classList:
             print("{}".format(aClass))
-            aClass.displayMethod()
-            aClass.displayAttribute()
+            aClass.display_method()
+            aClass.display_attribute()
 
-    @staticmethod
-    def getAllMyClass():
+    def get_all_my_class():
         return ClassFinder.classList
-
-
-file = open("test2.txt")
-file_data = file.read()
-
