@@ -5,21 +5,21 @@ from PEP8Converter import PEP8Converter
 
 class FileHandler:
 
-    @staticmethod
-    def readFile():
+    def read_file():
         root = Tk()
-        nameOfFile = filedialog.askopenfilename(filetypes=(("All files", "*.*"), ("All files", "*.*")))
-        if nameOfFile is None:
-            return
-        file = open(nameOfFile)
-        file_data = file.read()
-        file.close
-        root.destroy()
-        return file_data
+        try:
+            nameOfFile = filedialog.askopenfilename(filetypes=(("All files", "*.*"), ("All files", "*.*")))
+            with open(nameOfFile) as file:
+                file_data = file.read()
+                root.destroy()
+                print("\nfile loaded...\n")
+                return file_data
+        except FileNotFoundError:
+            root.destroy()
+            print("Error, no file inserted")
 
-    def writeFile(aPlantClass):
+    def write_file(content, aPlantClass):
         fileName = aPlantClass.className
-        f = open("{}.py".format(fileName), "w+")
-        content = PEP8Converter.createClass(aPlantClass)
-        f.write(content)
-        f.close()
+        with open("{}.py".format(fileName), "w+") as f:
+            f.write(content)
+            f.close()

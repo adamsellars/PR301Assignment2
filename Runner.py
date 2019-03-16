@@ -10,27 +10,32 @@ class Controller:
         self.model = model
         self.view = view
 
-    def startMenu(self):
+    def start_menu(self):
         incorrectInput = True
         while (incorrectInput):
-            View.printMenu()
+            View.print_menu()
             userInput = input("Please enter your input: ")
 
+            # Press 1 to load your text file
             if (userInput == "1"):
-                file_data = FileHandler.readFile()
-                print("\n>\nFile Loaded\n>\n")
+                file_data = FileHandler.read_file()
 
+            # Press 2 to write from plantuml text to python code
             elif (userInput == "2"):
-                ClassFinder.findClass(file_data)
-                ClassFinder.displayMyClasses()
-
-            elif (userInput == "3"):
-                allMyClasses = ClassFinder.getAllMyClass()
+                ClassFinder.find_class(file_data)
+                allMyClasses = ClassFinder.get_all_my_class()
                 for aPlantClass in allMyClasses:
-                    FileHandler.writeFile(aPlantClass)
+                    content = PEP8Converter.create_class(aPlantClass)
+                    FileHandler.write_file(content, aPlantClass)
 
-            elif (userInput == "4"):
+            # Awaiting option
+            elif (userInput == "3"):
                 pass
+
+            # Exit
+            elif (userInput == "5"):
+                incorrectInput = False
+                print("\ngoodbye..\n")
 
             else:
                 input("\nWrong option. Press enter to try again...")
@@ -38,5 +43,5 @@ class Controller:
 
 if __name__ == "__main__":
     controller = Controller(ClassFinder, View)
-    controller.startMenu()
+    controller.start_menu()
 
