@@ -1,6 +1,6 @@
+import os
 from tkinter import *
 from tkinter import filedialog
-from PEP8Converter import PEP8Converter
 
 
 class FileHandler:
@@ -18,8 +18,24 @@ class FileHandler:
             root.destroy()
             print("Error, no file inserted")
 
-    def write_file(content: str, aPlantClass: str):
+    def choose_directory() -> str:
+        root = Tk()
+        try:
+            dir_name = filedialog.askdirectory()
+            root.destroy()
+            return dir_name
+        except FileNotFoundError:
+            root.destroy()
+
+    def write_file(directoryName: str, content: str, aPlantClass: str) -> None:
+        root = Tk()
         fileName = aPlantClass.className
-        with open("{}.py".format(fileName), "w+") as f:
-            f.write(content)
-            f.close()
+        try:
+            with open(directoryName + "/{}.py".format(fileName), "w+") as f:
+                f.write(content)
+                f.close()
+                root.destroy()
+
+        except FileNotFoundError:
+            root.destroy()
+            print("Error, no file inserted")

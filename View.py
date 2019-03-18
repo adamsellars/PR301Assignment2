@@ -1,7 +1,7 @@
 
 class View:
 
-    def print_menu():
+    def print_menu() -> None:
         print ("\n"
                "Press 1 to load your text file\n"
                "Press 2 to write from plantuml text to python code\n"

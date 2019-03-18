@@ -14,6 +14,5 @@ class AF502 {
    fly(people, seat, eat, sleep) : Void  
    land(small) : Void  
    evacuate(people, seats)
-
 }
 @enduml
