@@ -1,11 +1,11 @@
 class PEP8Converter:
 
-    def convert_class(plantClassName):
+    def convert_class(plantClassName: str) -> str:
         className = plantClassName.capitalize()
         className = "class {}:\n".format(className)
         return className
 
-    def convert_method(plantMethod):
+    def convert_method(plantMethod: str) -> str:
         if ":" in plantMethod:
             methodAndType = plantMethod.split(":")
             returnType = methodAndType[1].strip()
@@ -17,15 +17,17 @@ class PEP8Converter:
             methodName = "\n    def {}:\n        return\n".format(plantMethod)
             return methodName
 
-    def convert_attribute(plantAttribute):
+    def convert_attribute(plantAttribute: str) -> str:
         attributeAndType = plantAttribute.split(":")
         returnType = attributeAndType[1].strip()
         attribute = attributeAndType[0][0].lower() + attributeAndType[0][1:].strip()
         anAttribute = "    {} = {}\n".format(attribute, returnType)
         return anAttribute
 
-    def create_class(plantClassName):
-        print(plantClassName.method)
+    def convert_constructor():
+        pass
+
+    def create_class(plantClassName: str) -> str:
         methods = ""
         attributes = ""
         constructor = "\n    def __init__(self): \n        pass\n"

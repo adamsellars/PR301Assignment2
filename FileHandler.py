@@ -5,7 +5,7 @@ from PEP8Converter import PEP8Converter
 
 class FileHandler:
 
-    def read_file():
+    def read_file() -> str:
         root = Tk()
         try:
             nameOfFile = filedialog.askopenfilename(filetypes=(("All files", "*.*"), ("All files", "*.*")))
@@ -18,7 +18,7 @@ class FileHandler:
             root.destroy()
             print("Error, no file inserted")
 
-    def write_file(content, aPlantClass):
+    def write_file(content: str, aPlantClass: str):
         fileName = aPlantClass.className
         with open("{}.py".format(fileName), "w+") as f:
             f.write(content)
