@@ -4,10 +4,10 @@ import re
 
 class ClassFinder:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.allMyClasses = []
 
-    def find_class(self, file_data):
+    def find_class(self, file_data: str) -> None:
         listOfCapitalWords = []
         listOfWords = file_data.split()
 
@@ -36,12 +36,15 @@ class ClassFinder:
                     if ")" in listOfWords[i]:
                         partOfMethod += listOfWords[i]
                         break
-                    if ")" in listOfWords[j]:
+                    elif ")" in listOfWords[j]:
                         partOfMethod += (" " + listOfWords[j])
                         if listOfWords[j + 1] == ":":
                             partOfMethod += listOfWords[j + 1] + " " + listOfWords[j + 2]
                             break
+                    elif "}" in listOfWords[j]:
+                        break
                     else:
+                        print(listOfWords[j])
                         partOfMethod += (listOfWords[j])
 
                 if listOfWords[i + 1] == ":":
@@ -50,6 +53,8 @@ class ClassFinder:
                     method = partOfMethod
                 self.allMyClasses[-1].add_method(method)
 
+            elif "@enduml" in listOfWords[i]:
+                break
     # def display_my_classes():
         # for aClass in self.allMyClasses:
             # aClass.display_method()
