@@ -28,7 +28,7 @@ class Controller:
                 directoryName = FileHandler.choose_directory()
                 print(directoryName)
                 for aPlantClass in allMyClasses:
-                    content += PEP8Converter.create_class(aPlantClass)
+                    content = PEP8Converter.create_class(aPlantClass)
                     FileHandler.write_file(directoryName, content, aPlantClass)
 
             # Awaiting option
