@@ -1,4 +1,4 @@
-from Classmaker import NewClass
+from ClassMaker import NewClass
 import re
 
 
@@ -22,9 +22,6 @@ class ClassFinder:
                 a_new_class = NewClass(a_new_class)
                 self.all_my_classes.append(a_new_class)
 
-            # Add relationships
-
-            # Add attributes
             elif ":" == list_of_letters[i]:
                 if (list_of_letters[i - 1].isalpha()) and (list_of_letters[i - 1][0].islower())\
                         and list_of_letters[i + 1].isalpha():
@@ -53,11 +50,6 @@ class ClassFinder:
                 else:
                     method = part_of_method
                 self.all_my_classes[-1].add_method(method)
-
-    # def display_my_classes():
-        # for aClass in self.all_my_classes:
-            # aClass.display_method()
-            # aClass.display_attribute()
 
     def get_all_my_classes(self) -> list:
         return self.all_my_classes

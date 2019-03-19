@@ -6,21 +6,21 @@ Controller -- PEP8Converter
 Controller o-- View
 
 class Controller {
-  myClassFinder : ClassFinder
+  my_class_finder : ClassFinder
   view : View
   __init__(self, model: String, view: Object) : None
   start_menu(self) : None
 }
 
 class ClassFinder {
-  allMyClass : List
+  all_my_class : list
   __init__(self) : None
   find_class(self, file_data: String) : None
-  get_all_my_classes(self) : List
+  get_all_my_classes(self) : list
 }
 
 class ClassMaker {
-  className : String
+  class_name : String
   attribute : List
   method : List
   relationship : List
@@ -35,14 +35,14 @@ class View {
 }
 
 class PEP8Converter {
-  convertClass(plantClassName: String) : String
-  convertMethod(plantMethod: String) : String
-  convertAttribute(plantAttribute: String) : String
-  createClass(plantClassName: String, plantMethod: String, plantAttribute: String) : String
+  convert_class(plantClassName: String) : String
+  convert_method(plantMethod: String) : String
+  convert_attribute(plantAttribute: String) : String
+  create_class(plantClassName: String, plantMethod: String, plantAttribute: String) : String
 }
 
 class FileHandler {
-  readFile() : String
-  writeFile() : None
+  read_file() : String
+  write_file() : None
 }
 @enduml

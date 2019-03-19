@@ -1,0 +1,8 @@
+__init__(self,model:Object,view: Object): None
+start_menu(): None
+
+__init__(self): None
+find_class(self,file_data: String):None get_all_my_classes(self): List
+
+__init__(self,className: String):None __str__(self): None
+__str__(self): None

@@ -1,4 +1,5 @@
 class PEP8Converter:
+
     @staticmethod
     def convert_class(plant_class_name: str) -> str:
         class_name = plant_class_name.capitalize()
