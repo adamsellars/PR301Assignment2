@@ -24,20 +24,18 @@ class Controller:
 
             # Press 2 to write from plantuml text to python code
             elif user_input == "2":
-                file = open("test4(myowncode).txt")
-                stuff = file.read()
-                file_data = stuff.split()
                 self.my_class_finder.find_class(self, file_data)
                 self.my_class_finder.relationship_finder(self, file_data)
                 self.all_my_classes = self.my_class_finder.get_all_my_classes(self)
                 directory_name = FileHandler.choose_directory()
                 for a_plant_class in self.all_my_classes:
+                    print(a_plant_class, " - my relationship -", a_plant_class.relationship)
                     content = PEP8Converter.create_class(a_plant_class)
                     FileHandler.write_file(directory_name, content, a_plant_class)
 
             # Awaiting option
             elif user_input == "3":
-                pass2
+                pass
 
             # Exit
             elif user_input == "5":
