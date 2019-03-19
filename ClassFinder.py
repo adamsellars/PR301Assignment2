@@ -11,10 +11,10 @@ class ClassFinder:
         list_of_letters = file_data
         print(list_of_letters)
         # Find total amount of words in the list
-        total_words = len(list_of_letters)
+        total_letters = len(list_of_letters)
 
         # for each word in the list
-        for i in range(total_words):
+        for i in range(total_letters):
 
             # Check if the before word is class
             if list_of_letters[i - 1] == "class":
@@ -34,7 +34,7 @@ class ClassFinder:
             # Add methods
             elif "(" in list_of_letters[i]:
                 part_of_method = ""
-                for j in range(i, total_words):
+                for j in range(i, total_letters):
                     if ")" in list_of_letters[i]:
                         part_of_method += list_of_letters[i]
                         break
@@ -65,9 +65,9 @@ class ClassFinder:
     def relationship_finder(self, data):
         file_data = data
         list_of_relationships = ["--", "o--"]
-        total_words = len(file_data)
+        total_letters = len(file_data)
         total_classes = len(self.all_my_classes)
-        for i in range(total_words):
+        for i in range(total_letters):
             if file_data[i] in list_of_relationships:
                 class_one, my_relationship, class_two = file_data[i - 1], file_data[i], file_data[i + 1]
                 for j in range(total_classes):
