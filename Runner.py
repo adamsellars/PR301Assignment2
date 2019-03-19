@@ -8,27 +8,30 @@ class Controller:
 
     def __init__(self, ClassFinder: object, View: object) -> None:
         self.my_class_finder = ClassFinder
-        self.view = View
+        self.my_view = View
         self.all_my_classes = []
 
     def start_menu(self) -> None:
         incorrect_input = True
         while incorrect_input:
-            View.print_menu()
+            self.my_view.print_menu()
             user_input = input("Please enter your input: ")
 
             # Press 1 to load your text file
             if user_input == "1":
-                file_data = FileHandler.read_file()
+                data = FileHandler.read_file()
+                file_data = data.split()
 
             # Press 2 to write from plantuml text to python code
             elif user_input == "2":
+                file = open("test4(myowncode).txt")
+                stuff = file.read()
+                file_data = stuff.split()
                 self.my_class_finder.find_class(self, file_data)
                 self.my_class_finder.relationship_finder(self, file_data)
                 self.all_my_classes = self.my_class_finder.get_all_my_classes(self)
                 directory_name = FileHandler.choose_directory()
                 for a_plant_class in self.all_my_classes:
-                    print(a_plant_class, " ", a_plant_class.relationship)
                     content = PEP8Converter.create_class(a_plant_class)
                     FileHandler.write_file(directory_name, content, a_plant_class)
 
@@ -46,6 +49,5 @@ class Controller:
 
 
 if __name__ == "__main__":
-    my_class_finder = ClassFinder()
     controller = Controller(ClassFinder, View)
     controller.start_menu()
