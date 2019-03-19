@@ -26,7 +26,7 @@ class ClassMaker {
   relationship : list
   __init__(self, class_name: String) : None
   __str__(self) : None
-  add_method(self, method_name: String) : None
+  add_method(self, methodName: String) : None
   add_attribute(self, attribute: String) : None
 }
 
@@ -35,10 +35,10 @@ class View {
 }
 
 class PEP8Converter {
-  convert_class(plant_class_name: String) : String
-  convert_method(plant_method: String) : String
-  convert_attribute(plant_attribute: String) : String
-  create_class(plant_class_name: String, plant_method: String, plant_attribute: String) : String
+  convert_class(plantClassName: String) : String
+  convert_method(plantMethod: String) : String
+  convert_attribute(plantAttribute: String) : String
+  create_class(plantClassName: String, plantMethod: String, plantAttribute: String) : String
 }
 
 class FileHandler {
