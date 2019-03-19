@@ -4,12 +4,13 @@ from tkinter import filedialog
 
 
 class FileHandler:
-
+    
+    @staticmethod
     def read_file() -> str:
         root = Tk()
         try:
-            nameOfFile = filedialog.askopenfilename(filetypes=(("All files", "*.*"), ("All files", "*.*")))
-            with open(nameOfFile) as file:
+            name_of_file = filedialog.askopenfilename(filetypes=(("All files", "*.*"), ("All files", "*.*")))
+            with open(name_of_file) as file:
                 file_data = file.read()
                 root.destroy()
                 print("\nfile loaded...\n")
@@ -18,6 +19,7 @@ class FileHandler:
             root.destroy()
             print("Error, no file inserted")
 
+    @staticmethod
     def choose_directory() -> str:
         root = Tk()
         try:
@@ -27,11 +29,12 @@ class FileHandler:
         except FileNotFoundError:
             root.destroy()
 
-    def write_file(directoryName: str, content: str, aPlantClass: str) -> None:
+    @staticmethod
+    def write_file(directory_name: str, content: str, a_plant_class: str) -> None:
         root = Tk()
-        fileName = aPlantClass.className
+        file_name = a_plant_class.class_name
         try:
-            with open(directoryName + "/{}.py".format(fileName), "w+") as f:
+            with open(directory_name + "/{}.py".format(file_name), "w+") as f:
                 f.write(content)
                 f.close()
                 root.destroy()

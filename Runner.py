@@ -11,33 +11,33 @@ class Controller:
         self.view = view
 
     def start_menu(self) -> None:
-        incorrectInput = True
-        while (incorrectInput):
+        incorrect_input = True
+        while incorrect_input:
             View.print_menu()
-            userInput = input("Please enter your input: ")
+            user_input = input("Please enter your input: ")
 
             # Press 1 to load your text file
-            if (userInput == "1"):
+            if user_input == "1":
                 file_data = FileHandler.read_file()
 
             # Press 2 to write from plantuml text to python code
-            elif (userInput == "2"):
-                content = ""
+            elif user_input == "2":
                 self.myClassFinder.find_class(file_data)
-                allMyClasses = self.myClassFinder.get_all_my_classes()
-                directoryName = FileHandler.choose_directory()
-                print(directoryName)
-                for aPlantClass in allMyClasses:
+                self.myClassFinder.relationship_finder(file_data)
+                all_my_classes = self.myClassFinder.get_all_my_classes()
+                directory_name = FileHandler.choose_directory()
+                for aPlantClass in all_my_classes:
+                    print(aPlantClass, " ", aPlantClass.relationship)
                     content = PEP8Converter.create_class(aPlantClass)
-                    FileHandler.write_file(directoryName, content, aPlantClass)
+                    FileHandler.write_file(directory_name, content, aPlantClass)
 
             # Awaiting option
-            elif (userInput == "3"):
+            elif user_input == "3":
                 pass
 
             # Exit
-            elif (userInput == "5"):
-                incorrectInput = False
+            elif user_input == "5":
+                incorrect_input = False
                 print("\ngoodbye..\n")
 
             else:
@@ -47,4 +47,3 @@ class Controller:
 if __name__ == "__main__":
     controller = Controller(ClassFinder, View)
     controller.start_menu()
-

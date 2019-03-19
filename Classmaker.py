@@ -1,13 +1,13 @@
 class NewClass:
 
-    def __init__(self, className: str) -> None:
-        self.className = className
+    def __init__(self, class_name: str) -> None:
+        self.class_name = class_name
         self.attribute = []
         self.method = []
         self.relationship = []
 
-    def __str__(self) -> None:
-        return self.className
+    def __str__(self) -> str:
+        return self.class_name
 
     def add_method(self, methodName: str) -> None:
         self.method.append(methodName)
@@ -15,16 +15,9 @@ class NewClass:
     def add_attribute(self, attribute: str) -> None:
         self.attribute.append(attribute)
 
-    # def display_method(self) -> None:
-        #methodCounter = 1
-        # for aMethod in self.method:
-            #print("Method {}: {}".format(methodCounter, aMethod))
-            #methodCounter += 1
+    def add_relationship(self, relationship: str) -> None:
+        self.relationship.append(relationship)
 
-    # def display_attribute(self) -> None:
-        #attributeCounter = 1
-        # for anAttribute in self.attribute:
-            #print("Attribute {}: {}".format(attributeCounter, anAttribute))
-            #attributeCounter += 1
+
 
 
