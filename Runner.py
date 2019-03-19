@@ -37,7 +37,7 @@ class Controller:
 
             # Awaiting option
             elif user_input == "3":
-                pass
+                pass2
 
             # Exit
             elif user_input == "5":

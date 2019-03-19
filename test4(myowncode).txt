@@ -21,10 +21,10 @@ class ClassFinder {
 
 class ClassMaker {
   class_name : String
-  attribute : List
-  method : List
-  relationship : List
-  __init__(self, className: String) : None
+  attribute : list
+  method : list
+  relationship : list
+  __init__(self, class_name: String) : None
   __str__(self) : None
   add_method(self, methodName: String) : None
   add_attribute(self, attribute: String) : None

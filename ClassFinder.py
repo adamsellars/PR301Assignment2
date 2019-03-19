@@ -21,11 +21,12 @@ class ClassFinder:
                 a_new_class = list_of_letters[i]
                 a_new_class = NewClass(a_new_class)
                 self.all_my_classes.append(a_new_class)
-
+            # Add attributes
             elif ":" == list_of_letters[i]:
-                if (list_of_letters[i - 1].isalpha()) and (list_of_letters[i - 1][0].islower())\
+                if ("(" not in list_of_letters[i - 1]) and (list_of_letters[i - 1][0].islower())\
                         and list_of_letters[i + 1].isalpha():
                     attribute = list_of_letters[i - 1] + " " + list_of_letters[i] + " " + list_of_letters[i + 1]
+                    print("I am attribute: ", attribute)
                     self.all_my_classes[-1].add_attribute(attribute)
 
             # Add methods

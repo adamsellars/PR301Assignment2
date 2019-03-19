@@ -7,6 +7,22 @@ class PEP8Converter:
         return class_name
 
     @staticmethod
+    def create_class(plant_class_name: str) -> str:
+        methods = ""
+        attributes = ""
+        class_name = PEP8Converter.convert_class(plant_class_name.class_name)
+        for aMethod in plant_class_name.method:
+            if "init" in aMethod:
+                for an_attribute in plant_class_name.attribute:
+                    print("I am attribute: ", an_attribute)
+                    attributes += PEP8Converter.convert_attribute(an_attribute)
+                methods += PEP8Converter.convert_constructor(aMethod, attributes)
+            else:
+                methods += PEP8Converter.convert_method(aMethod)
+
+        return class_name + methods
+
+    @staticmethod
     def convert_method(plant_method: str) -> str:
         print("My method: ", plant_method)
         if "init" in plant_method:
@@ -25,7 +41,7 @@ class PEP8Converter:
                         print("here3")
                         print("small stuff: ", plant_method[j+1])
                         plant_method[j+1] = " ->"
-                        my_method = "".join(plant_method)
+                        my_method = "".join(plant_method).lstrip()
         pep8_method = "\n    def {}:\n        pass\n".format(my_method)
         return pep8_method
 
@@ -41,7 +57,7 @@ class PEP8Converter:
                     if ")" in plant_method[j]:
                         plant_method = list(plant_method)
                         plant_method[j + 1] = " ->"
-                        my_method = "".join(plant_method)
+                        my_method = "".join(plant_method).lstrip()
         pep8_method = "\n    def {}:\n    {}".format(my_method, pep8_attributes)
         return pep8_method
 
@@ -53,22 +69,7 @@ class PEP8Converter:
         an_attribute = "    self.{} = {}    \n    ".format(attribute, return_type)
         return an_attribute
 
-    # def convert_constructor():
-    #     pass
-    @staticmethod
-    def create_class(plant_class_name: str) -> str:
-        methods = ""
-        attributes = ""
-        class_name = PEP8Converter.convert_class(plant_class_name.class_name)
-        for aMethod in plant_class_name.method:
-            if "init" in aMethod:
-                for an_attribute in plant_class_name.attribute:
-                    attributes += PEP8Converter.convert_attribute(an_attribute)
-                methods += PEP8Converter.convert_constructor(aMethod, attributes)
-            else:
-                methods += PEP8Converter.convert_method(aMethod)
 
-        return class_name + methods
 
     # @staticmethod
     # def create_relationship():
