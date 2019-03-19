@@ -8,14 +8,14 @@ Controller o-- View
 class Controller {
   myClassFinder : ClassFinder
   view : View
-  __init__(self, model: Object, view: Object) : None
-  start_menu() : None
+  __init__(self, model: String, view: Object) : None
+  start_menu(self) : None
 }
 
 class ClassFinder {
   allMyClass : List
   __init__(self) : None
-  find_class(self, file_data: String): None
+  find_class(self, file_data: String) : None
   get_all_my_classes(self) : List
 }
 
@@ -24,10 +24,10 @@ class ClassMaker {
   attribute : List
   method : List
   relationship : List
-  __init__(self, className: String): None
+  __init__(self, className: String) : None
   __str__(self) : None
-  add_method(self, methodName: String): None
-  add_attribute(self, attribute: String): None
+  add_method(self, methodName: String) : None
+  add_attribute(self, attribute: String) : None
 }
 
 class View {
