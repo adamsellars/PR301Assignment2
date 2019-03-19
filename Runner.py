@@ -6,9 +6,10 @@ from PEP8Converter import PEP8Converter
 
 class Controller:
 
-    def __init__(self, ClassFinder: object, view: object) -> None:
-        self.myClassFinder = ClassFinder()
-        self.view = view
+    def __init__(self, ClassFinder: object, View: object) -> None:
+        self.my_class_finder = ClassFinder
+        self.view = View
+        self.all_my_classes = []
 
     def start_menu(self) -> None:
         incorrect_input = True
@@ -22,14 +23,14 @@ class Controller:
 
             # Press 2 to write from plantuml text to python code
             elif user_input == "2":
-                self.myClassFinder.find_class(file_data)
-                self.myClassFinder.relationship_finder(file_data)
-                all_my_classes = self.myClassFinder.get_all_my_classes()
+                self.my_class_finder.find_class(self, file_data)
+                self.my_class_finder.relationship_finder(self, file_data)
+                self.all_my_classes = self.my_class_finder.get_all_my_classes(self)
                 directory_name = FileHandler.choose_directory()
-                for aPlantClass in all_my_classes:
-                    print(aPlantClass, " ", aPlantClass.relationship)
-                    content = PEP8Converter.create_class(aPlantClass)
-                    FileHandler.write_file(directory_name, content, aPlantClass)
+                for a_plant_class in self.all_my_classes:
+                    print(a_plant_class, " ", a_plant_class.relationship)
+                    content = PEP8Converter.create_class(a_plant_class)
+                    FileHandler.write_file(directory_name, content, a_plant_class)
 
             # Awaiting option
             elif user_input == "3":
@@ -45,5 +46,6 @@ class Controller:
 
 
 if __name__ == "__main__":
+    my_class_finder = ClassFinder()
     controller = Controller(ClassFinder, View)
     controller.start_menu()
