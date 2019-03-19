@@ -1,42 +1,45 @@
 class PEP8Converter:
+    @staticmethod
+    def convert_class(plant_class_name: str) -> str:
+        class_name = plant_class_name.capitalize()
+        class_name = "class {}:\n".format(class_name)
+        return class_name
 
-    def convert_class(plantClassName: str) -> str:
-        className = plantClassName.capitalize()
-        className = "class {}:\n".format(className)
-        return className
-
-    def convert_method(plantMethod: str) -> str:
-        if ":" in plantMethod:
-            methodAndType = plantMethod.split(":")
-            returnType = methodAndType[1].strip()
-            method = methodAndType[0][0].lower() + methodAndType[0][1:].rstrip()
-            methodName = "\n    def {}:\n        return {}\n".format(method, returnType)
-            return methodName
+    @staticmethod
+    def convert_method(plant_method: str) -> str:
+        if ":" in plant_method:
+            method_and_type = plant_method.split(":")
+            return_type = method_and_type[1].strip()
+            method = method_and_type[0][0].lower() + method_and_type[0][1:].rstrip()
+            method_name = "\n    def {}:\n        return {}\n".format(method, return_type)
+            return method_name
         else:
-            plantMethod = plantMethod[0].lower() + plantMethod[1:]
-            methodName = "\n    def {}:\n        return\n".format(plantMethod)
-            return methodName
+            plant_method = plant_method[0].lower() + plant_method[1:]
+            method_name = "\n    def {}:\n        return\n".format(plant_method)
+            return method_name
 
-    def convert_attribute(plantAttribute: str) -> str:
-        attributeAndType = plantAttribute.split(":")
-        returnType = attributeAndType[1].strip()
-        attribute = attributeAndType[0][0].lower() + attributeAndType[0][1:].strip()
-        anAttribute = "    {} = {}\n".format(attribute, returnType)
-        return anAttribute
+    @staticmethod
+    def convert_attribute(plant_attribute: str) -> str:
+        attribute_and_type = plant_attribute.split(":")
+        return_type = attribute_and_type[1].strip()
+        attribute = attribute_and_type[0][0].lower() + attribute_and_type[0][1:].strip()
+        an_attribute = "    {} = {}\n".format(attribute, return_type)
+        return an_attribute
 
-    def convert_constructor():
-        pass
-
-    def create_class(plantClassName: str) -> str:
+    # def convert_constructor():
+    #     pass
+    @staticmethod
+    def create_class(plant_class_name: str) -> str:
         methods = ""
         attributes = ""
         constructor = "\n    def __init__(self): \n        pass\n"
-        className = PEP8Converter.convert_class(plantClassName.className)
-        for aMethod in plantClassName.method:
+
+        class_name = PEP8Converter.convert_class(plant_class_name.class_name)
+        for aMethod in plant_class_name.method:
             methods += PEP8Converter.convert_method(aMethod)
-        for anAtrribute in plantClassName.attribute:
-            attributes += PEP8Converter.convert_attribute(anAtrribute)
-        return className + attributes + constructor + methods
+        for an_attribute in plant_class_name.attribute:
+            attributes += PEP8Converter.convert_attribute(an_attribute)
+        return class_name + attributes + constructor + methods
 
 
 
