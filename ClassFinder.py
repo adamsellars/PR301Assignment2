@@ -1,5 +1,4 @@
 from ClassMaker import NewClass
-import re
 
 
 class ClassFinder:
@@ -25,6 +24,7 @@ class ClassFinder:
                 if ("(" not in list_of_letters[i - 1]) and (list_of_letters[i - 1][0].islower())\
                         and list_of_letters[i + 1].isalpha():
                     attribute = list_of_letters[i - 1] + " " + list_of_letters[i] + " " + list_of_letters[i + 1]
+                    print("I am an attribute", attribute)
                     self.my_classes[-1].add_attribute(attribute)
 
             # Add methods
@@ -55,11 +55,17 @@ class ClassFinder:
 
     def relationship_finder(self, data):
         file_data = data
+
+        # possible relationships
         list_of_relationships = ["--", "o--"]
         total_letters = len(file_data)
         total_classes = len(self.my_classes)
         for i in range(total_letters):
+
+            # If a word in the file is in the list of relationship
             if file_data[i] in list_of_relationships:
+
+                # Class one is the class before relationship symbol and class two is the relationship afterwards.
                 class_one, my_relationship, class_two = file_data[i - 1], file_data[i], file_data[i + 1]
                 for j in range(total_classes):
                     if self.my_classes[j].class_name == class_one:

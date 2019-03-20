@@ -30,12 +30,10 @@ class Controller:
                 self.my_class_finder.find_class(file_data)
                 self.my_class_finder.relationship_finder(file_data)
                 self.all_my_classes = self.my_class_finder.get_all_my_classes()
-                # directory_name = FileHandler.choose_directory()
+                directory_name = FileHandler.choose_directory()
                 for a_plant_class in self.all_my_classes:
                     content = PEP8Converter.create_class(a_plant_class)
-                    # print(a_plant_class, " - ", a_plant_class.relationship)
-                    print(content)
-                    # FileHandler.write_file(directory_name, content, a_plant_class)
+                    FileHandler.write_file(directory_name, content, a_plant_class)
 
             # Awaiting option
             elif user_input == "3":
