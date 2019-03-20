@@ -21,8 +21,7 @@ class ClassFinder:
                 self.my_classes.append(a_new_class)
             # Add attributes
             elif ":" == list_of_letters[i]:
-                if ("(" not in list_of_letters[i - 1]) and (list_of_letters[i - 1][0].islower())\
-                        and list_of_letters[i + 1].isalpha():
+                if ("(" not in list_of_letters[i - 1]) and (list_of_letters[i - 1][0].islower()):
                     attribute = list_of_letters[i - 1] + " " + list_of_letters[i] + " " + list_of_letters[i + 1]
                     print("I am an attribute", attribute)
                     self.my_classes[-1].add_attribute(attribute)
@@ -53,9 +52,7 @@ class ClassFinder:
     def get_all_my_classes(self) -> list:
         return self.my_classes
 
-    def relationship_finder(self, data):
-        file_data = data
-
+    def relationship_finder(self, file_data):
         # possible relationships
         list_of_relationships = ["--", "o--"]
         total_letters = len(file_data)

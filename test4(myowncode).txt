@@ -18,6 +18,7 @@ class ClassFinder {
   __init__(self) : None
   find_class(self, file_data: String) : None
   get_all_my_classes(self) : list
+  relationship_finder(self, data: String) : None
 }
 
 class ClassMaker {
@@ -29,6 +30,7 @@ class ClassMaker {
   __str__(self) : None
   add_method(self, method_name: String) : None
   add_attribute(self, attribute: String) : None
+  add_relationship(self, relationship: String) : None
 }
 
 class View {
@@ -36,9 +38,13 @@ class View {
 }
 
 class PEP8Converter {
+  create_relationship(plant_relationship: String, counter: int) : String
+  set_import(plant_relationship: String) : String
   convert_class(plant_class_name: String) : String
   convert_method(plant_method: String) : String
   convert_attribute(plant_attribute: String) : String
+  convert_constructor(plant_method: String, pep8_attributes: String) : String
+  
   create_class(plant_class_name: String, plant_method: String, plant_attribute: String) : String
 }
 
