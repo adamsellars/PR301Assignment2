@@ -7,39 +7,46 @@ class PEP8Converter:
         return class_name
 
     @staticmethod
+    def create_relationship(plant_relationship: str) -> str:
+        if "o--" in plant_relationship:
+            relationships = plant_relationship.split()
+            relationship_content = "\nobject = {}()".format(relationships[1])
+            return relationship_content
+        else:
+            return ""
+
+    @staticmethod
     def create_class(plant_class_name: str) -> str:
         methods = ""
         attributes = ""
+        relationship = ""
         class_name = PEP8Converter.convert_class(plant_class_name.class_name)
-        for aMethod in plant_class_name.method:
-            if "init" in aMethod:
+        print(len(plant_class_name.relationship))
+        if (len(plant_class_name.relationship)) > 0:
+            for a_relationship in plant_class_name.relationship:
+                relationship += PEP8Converter.create_relationship(a_relationship)
+        for a_method in plant_class_name.method:
+            if "init" in a_method:
                 for an_attribute in plant_class_name.attribute:
-                    print("I am attribute: ", an_attribute)
                     attributes += PEP8Converter.convert_attribute(an_attribute)
-                methods += PEP8Converter.convert_constructor(aMethod, attributes)
+                methods += PEP8Converter.convert_constructor(a_method, attributes)
             else:
-                methods += PEP8Converter.convert_method(aMethod)
-
-        return class_name + methods
+                methods += PEP8Converter.convert_method(a_method)
+        return class_name + methods + relationship
 
     @staticmethod
     def convert_method(plant_method: str) -> str:
-        print("My method: ", plant_method)
         if "init" in plant_method:
-            print("I have a constructor")
-        elif "String" in plant_method:
-            plant_method = plant_method.replace("String", "str")
+            if "String" in plant_method:
+                plant_method = plant_method.replace("String", "str")
 
         total_words = len(plant_method)
         my_method = ""
         for i in range(total_words):
             if "(" in plant_method[i]:
-                print("here1")
                 for j in range(i, total_words):
                     if ")" in plant_method[j]:
                         plant_method = list(plant_method)
-                        print("here3")
-                        print("small stuff: ", plant_method[j+1])
                         plant_method[j+1] = " ->"
                         my_method = "".join(plant_method).lstrip()
         pep8_method = "\n    def {}:\n        pass\n".format(my_method)
@@ -71,6 +78,7 @@ class PEP8Converter:
 
 
 
-    # @staticmethod
-    # def create_relationship():
+
+
+
 

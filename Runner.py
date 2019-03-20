@@ -6,9 +6,9 @@ from PEP8Converter import PEP8Converter
 
 class Controller:
 
-    def __init__(self, ClassFinder: object, View: object) -> None:
-        self.my_class_finder = ClassFinder
-        self.my_view = View
+    def __init__(self, class_finder: object, view: object) -> None:
+        self.my_class_finder = class_finder
+        self.my_view = view
         self.all_my_classes = []
 
     def start_menu(self) -> None:
@@ -27,17 +27,19 @@ class Controller:
                 file = open("test4(myowncode).txt")
                 stuff = file.read()
                 file_data = stuff.split()
-                self.my_class_finder.find_class(self, file_data)
-                self.my_class_finder.relationship_finder(self, file_data)
-                self.all_my_classes = self.my_class_finder.get_all_my_classes(self)
-                directory_name = FileHandler.choose_directory()
+                self.my_class_finder.find_class(file_data)
+                self.my_class_finder.relationship_finder(file_data)
+                self.all_my_classes = self.my_class_finder.get_all_my_classes()
+                # directory_name = FileHandler.choose_directory()
                 for a_plant_class in self.all_my_classes:
                     content = PEP8Converter.create_class(a_plant_class)
-                    FileHandler.write_file(directory_name, content, a_plant_class)
+                    # print(a_plant_class, " - ", a_plant_class.relationship)
+                    print(content)
+                    # FileHandler.write_file(directory_name, content, a_plant_class)
 
             # Awaiting option
             elif user_input == "3":
-                pass2
+                pass
 
             # Exit
             elif user_input == "5":
@@ -49,5 +51,7 @@ class Controller:
 
 
 if __name__ == "__main__":
-    controller = Controller(ClassFinder, View)
+    view = View()
+    class_finder = ClassFinder()
+    controller = Controller(class_finder, view)
     controller.start_menu()
