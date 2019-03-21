@@ -9,8 +9,8 @@ class NewClass:
     def __str__(self) -> str:
         return self.class_name
 
-    def add_method(self, methodName: str) -> None:
-        self.method.append(methodName)
+    def add_method(self, method_name: str) -> None:
+        self.method.append(method_name)
 
     def add_attribute(self, attribute: str) -> None:
         self.attribute.append(attribute)

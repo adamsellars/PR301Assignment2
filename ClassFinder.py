@@ -23,7 +23,7 @@ class ClassFinder:
             elif ":" == list_of_letters[i]:
                 if ("(" not in list_of_letters[i - 1]) and (list_of_letters[i - 1][0].islower()):
                     attribute = list_of_letters[i - 1] + " " + list_of_letters[i] + " " + list_of_letters[i + 1]
-                    print("I am an attribute", attribute)
+                    # print("I am an attribute", attribute)
                     self.my_classes[-1].add_attribute(attribute)
 
             # Add methods

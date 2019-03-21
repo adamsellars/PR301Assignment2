@@ -2,6 +2,7 @@ from View import View
 from FileHandler import FileHandler
 from ClassFinder import ClassFinder
 from PEP8Converter import PEP8Converter
+from CommandLineInterpreter import CommandLineInterpreter
 
 
 class Controller:
@@ -10,6 +11,7 @@ class Controller:
         self.my_class_finder = class_finder
         self.my_view = view
         self.all_my_classes = []
+        self.my_command_line_interpreter = CommandLineInterpreter(self)
 
     def start_menu(self) -> None:
         incorrect_input = True
@@ -35,9 +37,9 @@ class Controller:
                     content = PEP8Converter.create_class(a_plant_class)
                     FileHandler.write_file(directory_name, content, a_plant_class)
 
-            # Awaiting option
+            # Press 3 to start command line interpreter
             elif user_input == "3":
-                pass
+                self.command_line_interpreter()
 
             # Exit
             elif user_input == "5":
@@ -46,6 +48,13 @@ class Controller:
 
             else:
                 input("\nWrong option. Press enter to try again...")
+
+    def command_line_interpreter(self):
+        self.my_command_line_interpreter.do_greet("user")
+        self.my_command_line_interpreter.cmdloop()
+
+    def read_file_from_path(self, path):
+        FileHandler.read_file_from_path(path)
 
 
 if __name__ == "__main__":

@@ -6,9 +6,9 @@ Controller -- PEP8Converter
 Controller o-- View
 
 class Controller {
-  my_class_finder : class_finder
-  my_view : view
-  al_my_classes : list
+  my_class_finder : ClassFinder
+  my_view : View
+  all_my_classes : List
   __init__(self, class_finder: Object, view: Object) : None
   start_menu(self) : None
 }

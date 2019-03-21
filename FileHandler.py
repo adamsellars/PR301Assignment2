@@ -4,7 +4,7 @@ from tkinter import filedialog
 
 
 class FileHandler:
-    
+
     @staticmethod
     def read_file() -> str:
         root = Tk()
@@ -18,6 +18,20 @@ class FileHandler:
         except FileNotFoundError:
             root.destroy()
             print("Error, no file inserted")
+
+    # Created by Adam
+    # Different way to read data from file requires user to enter complete file path
+    @staticmethod
+    def read_file_from_path(path) -> str:
+        try:
+            with open(path) as file:
+                data = file.read()
+                print("\nfile loaded...\n")
+                return data
+        except FileNotFoundError:
+            print("Error, file does not exist!")
+        except PermissionError:
+            print("Error, you do not have permission to access this file!")
 
     @staticmethod
     def choose_directory() -> str:
@@ -41,4 +55,12 @@ class FileHandler:
 
         except FileNotFoundError:
             root.destroy()
+            print("Error, no file inserted")
+
+    @staticmethod
+    def write_file_to_path(path: str, content: str) -> None:
+        try:
+            with open(path + ".py", "w+") as file:
+                file.write(content)
+        except FileNotFoundError:
             print("Error, no file inserted")

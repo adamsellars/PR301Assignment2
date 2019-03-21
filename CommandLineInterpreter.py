@@ -68,7 +68,7 @@ class CommandLineInterpreter(Cmd):
         pass
 
     #
-    def help_wite_file(self):
+    def help_write_file(self):
         pass
 
     # Created by Adam
