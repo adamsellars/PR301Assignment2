@@ -41,7 +41,7 @@ load_file command help
 Description: Load a .txt file into the program
 Syntax: load_file [path]
 Parameter: [path] = full path name of the file starting from the root directory of this program
-Example: load_file test4(myowncode).txt
+Example: load_file test4.txt
 <BLANKLINE>
 
 # Test 6
@@ -62,10 +62,23 @@ Error, file does not exist!
 
 # Test 8
 # this file does exist should get a success message
->>> cmd.do_load_file("test4(myowncode).txt")
+>>> cmd.do_load_file("test4.txt")
 <BLANKLINE>
 file loaded...
 <BLANKLINE>
+
+# Test 9
+# This should print a help text for the help function
+>>> cmd.help_print_file("print_file")
+==================================================
+print_file command help
+==================================================
+Description: Print a PEP8 format text into the interpreter
+Syntax: print_file
+Example: print_file test4.txt
+<BLANKLINE>
+
+
 
 >>> cmd.do_quit("")
 Goodbye thank you for using the command line interpreter
