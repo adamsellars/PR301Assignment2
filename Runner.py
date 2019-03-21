@@ -13,7 +13,6 @@ class Controller:
         self.all_my_classes = []
         self.my_command_line_interpreter = CommandLineInterpreter(self)
         self.data = ""
-        self.pep8_content = ""
 
     def start_menu(self) -> None:
         incorrect_input = True
@@ -69,9 +68,10 @@ class Controller:
 
     def print_file_to_interpreter(self):
         self.find_all()
+        pep8 = ""
         for a_plant_class in self.all_my_classes:
-            self.pep8_content = PEP8Converter.create_class(a_plant_class)
-        print(self.pep8_content)
+            pep8 += PEP8Converter.create_class(a_plant_class) + "\n"
+        return pep8
 
 
 if __name__ == "__main__":
