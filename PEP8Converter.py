@@ -33,13 +33,13 @@ class PEP8Converter:
         import_class = ""
         counter = 1
         class_name = PEP8Converter.convert_class(plant_class_name.class_name)
-        print(plant_class_name.attribute)
+        # print(plant_class_name.attribute)
         for a_method in plant_class_name.method:
             if "init" in a_method:
                 for an_attribute in plant_class_name.attribute:
-                    print("I am an attribute: ", an_attribute)
+                    # print("I am an attribute: ", an_attribute)
                     attributes += PEP8Converter.convert_attribute(an_attribute)
-                    print(attributes)
+                    # print(attributes)
                 methods += PEP8Converter.convert_constructor(a_method, attributes)
             else:
                 methods += PEP8Converter.convert_method(a_method)

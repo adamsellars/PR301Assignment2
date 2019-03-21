@@ -56,6 +56,9 @@ class FileHandler:
         except FileNotFoundError:
             root.destroy()
             print("Error, no file inserted")
+        except PermissionError:
+            root.destroy()
+            print("Error, you do not have permission to access this file!")
 
     # Created by Adam different way to handle creating directories
     @staticmethod
@@ -68,3 +71,5 @@ class FileHandler:
                 file.write(content)
         except FileNotFoundError:
             print("Error, no file inserted")
+        except PermissionError:
+            print("Error, you do not have permission to access this file!")

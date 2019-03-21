@@ -3,8 +3,6 @@ from FileHandler import FileHandler
 from ClassFinder import ClassFinder
 from PEP8Converter import PEP8Converter
 from CommandLineInterpreter import CommandLineInterpreter
-# from CmdArguments import CmdArguments
-from sys import argv
 
 
 class Controller:
@@ -14,8 +12,8 @@ class Controller:
         self.my_view = view
         self.all_my_classes = []
         self.my_command_line_interpreter = CommandLineInterpreter(self)
-        # self.my_cmd_arguments = CmdArguments(self)
-        self.data = ""
+        self.data = None
+        self.pep8_content = None
 
     def start_menu(self) -> None:
         incorrect_input = True
@@ -29,9 +27,12 @@ class Controller:
 
             # Press 2 to write from plantuml text to python code
             elif user_input == "2":
-                self.find_all()
-                directory_name = FileHandler.choose_directory()
-                self.write_all(directory_name)
+                if self.data is not None:
+                    self.find_all()
+                    directory_name = FileHandler.choose_directory()
+                    self.write_all(directory_name)
+                else:
+                    self.my_view.file_not_loaded_warning()
 
             # Press 3 to start command line interpreter
             elif user_input == "3":
@@ -66,7 +67,7 @@ class Controller:
     def write_file_to_path(self, path):
         self.find_all()
         for a_plant_class in self.all_my_classes:
-            PEP8Converter.create_class(a_plant_class)
+            self.pep8_content = PEP8Converter.create_class(a_plant_class)
             FileHandler.write_file_to_path(path, self.pep8_content, a_plant_class)
 
     def print_file_to_interpreter(self):
@@ -77,27 +78,8 @@ class Controller:
         return pep8
 
 
-# Leroi wrote this
-def start_cmd():
+if __name__ == "__main__":
     view = View()
     class_finder = ClassFinder()
     controller = Controller(class_finder, view)
-    controller.command_line_interpreter()
-
-
-# Adam wrote this
-def correct_num_of_arguments(num_of_args):
-    if num_of_args == 1:
-        return True
-    else:
-        return False
-
-
-if __name__ == "__main__":
-    args = len(argv)
-    if correct_num_of_arguments(args):
-        start_cmd()
-    else:
-        print("Run 'Runner.py' only")
-
-
+    controller.start_menu()

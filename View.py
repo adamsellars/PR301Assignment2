@@ -9,3 +9,13 @@ class View:
                "Press 5 to exit"
                "\n")
 
+    def file_not_loaded_warning(self):
+        print("Must load a file first")
+
+    def file_empty_warning(self):
+        print("File must be empty")
+
+    def file_type_warning(self):
+        print("File must be a .txt file type")
+
+

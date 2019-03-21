@@ -2,7 +2,6 @@
 # ---------------------------------------------Created by Adam----------------------------------
 # Testing greeting and help messages work as expected
 >>> cmd = CommandLineInterpreter(Controller(ClassFinder(), View()))
-# Test 1
 >>> cmd.do_greet("line")
 ==================================================
 Welcome to the command line interpreter.
@@ -41,7 +40,7 @@ load_file command help
 Description: Load a .txt file into the program
 Syntax: load_file [path]
 Parameter: [path] = full path name of the file starting from the root directory of this program
-Example: load_file test4.txt
+Example: load_file test4(myowncode).txt
 <BLANKLINE>
 
 # Test 6
@@ -62,14 +61,20 @@ Error, file does not exist!
 
 # Test 8
 # this file does exist should get a success message
->>> cmd.do_load_file("test4.txt")
+>>> cmd.do_load_file("test4(myowncode).txt")
 <BLANKLINE>
 file loaded...
 <BLANKLINE>
 
 # Test 9
-# This should print a help text for the help function
->>> cmd.do_help("print_file")
+>>> cmd.do_quit("")
+Goodbye thank you for using the command line interpreter
+True
+
+# ---------------------------------------------Created by Leroi---------------------------------
+
+# Test 10
+>>> cmd.help_print_file()
 ==================================================
 print_file command help
 ==================================================
@@ -78,33 +83,26 @@ Syntax: print_file
 Example: print_file test4.txt
 <BLANKLINE>
 
-# Test 10
-# Testing Controller Menu
->>> controller = Controller(ClassFinder(), View())
->>> controller.my_view.print_menu()
-<BLANKLINE>
-Press 1 to load your text file
-Press 2 to write from plantuml text to python code
-Press 3 to run the command line interpreter
-Press 5 to exit
-<BLANKLINE>
-
 # Test 11
-# Test PEP8Converter convert class function
->>> PEP8Converter.convert_class("Controller")
-'class Controller:\\n'
+>>> cmd.help_write_file()
+==================================================
+print_file command help
+==================================================
+Description: Print a PEP8 format text into the interpreter
+Syntax: print_file
+Example: print_file test4.txt
+<BLANKLINE>
 
 
->>> cmd.do_quit("")
-Goodbye thank you for using the command line interpreter
-True
+# Test 12 try to read protected file should get permission error message
+>>> cmd.do_load_file("no_permission.txt")
+Error, you do not have permission to access this file!
 """
 
 from View import View
 from ClassFinder import ClassFinder
 from Runner import Controller
 from Runner import CommandLineInterpreter
-from PEP8Converter import PEP8Converter
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
