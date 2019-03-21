@@ -61,7 +61,7 @@ class CommandLineInterpreter(Cmd):
     # print file to the command line interpreter?
     # not sure if you want to do this or just write files
     def do_print_file(self):
-        pass
+        self.my_controller.print_file_to_interpreter()
 
 
 

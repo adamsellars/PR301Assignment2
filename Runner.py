@@ -13,6 +13,7 @@ class Controller:
         self.all_my_classes = []
         self.my_command_line_interpreter = CommandLineInterpreter(self)
         self.data = ""
+        self.pep8_content = ""
 
     def start_menu(self) -> None:
         incorrect_input = True
@@ -63,9 +64,13 @@ class Controller:
     def write_file_to_path(self, path):
         self.find_all()
         for a_plant_class in self.all_my_classes:
-            content = PEP8Converter.create_class(a_plant_class)
-            FileHandler.write_file_to_path(path, content, a_plant_class)
+            self.pep8_content = PEP8Converter.create_class(a_plant_class)
+            FileHandler.write_file_to_path(path, self.pep8_content, a_plant_class)
 
+    def print_file_to_interpreter(self):
+        self.find_all()
+        self.pep8_content = PEP8Converter.create_class(a_plant_class)
+        print(self.pep8_content)
 
 if __name__ == "__main__":
     view = View()
