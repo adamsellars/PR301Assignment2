@@ -17,6 +17,20 @@ class CommandLineInterpreter(Cmd):
     def do_write_file(self, path):
         self.my_controller.write_file_to_path(path)
 
+    #
+    def help_print_file(self):
+        print(
+            self.banner +
+            "\nprint_file command help\n" +
+            self.banner +
+            "\nDescription: Print a PEP8 format text into the interpreter\n"
+        )
+        pass
+
+    #
+    def help_write_file(self):
+        pass
+
     # Created by Adam
     def help_load_file(self):
         print(
@@ -61,17 +75,11 @@ class CommandLineInterpreter(Cmd):
     # print file to the command line interpreter?
     # not sure if you want to do this or just write files
     def do_print_file(self):
-        pass
+        self.my_controller.print_file_to_interpreter()
 
 
 
-    #
-    def help_print_file(self):
-        pass
 
-    #
-    def help_write_file(self):
-        pass
 
     # Created by Adam
     def do_quit(self, line):
