@@ -14,6 +14,10 @@ class CommandLineInterpreter(Cmd):
         self.my_controller.read_file_from_path(path)
 
     # Created by Adam
+    def do_write_file(self, path):
+        self.my_controller.write_file_to_path(path)
+
+    # Created by Adam
     def help_load_file(self):
         print(
             self.banner +
@@ -59,9 +63,7 @@ class CommandLineInterpreter(Cmd):
     def do_print_file(self):
         pass
 
-    # write file to .py files
-    def do_write_file(self):
-        pass
+
 
     #
     def help_print_file(self):

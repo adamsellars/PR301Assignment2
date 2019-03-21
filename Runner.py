@@ -12,6 +12,7 @@ class Controller:
         self.my_view = view
         self.all_my_classes = []
         self.my_command_line_interpreter = CommandLineInterpreter(self)
+        self.data = ""
 
     def start_menu(self) -> None:
         incorrect_input = True
@@ -21,21 +22,13 @@ class Controller:
 
             # Press 1 to load your text file
             if user_input == "1":
-                data = FileHandler.read_file()
-                file_data = data.split()
+                self.data = FileHandler.read_file()
 
             # Press 2 to write from plantuml text to python code
             elif user_input == "2":
-                file = open("test4(myowncode).txt")
-                stuff = file.read()
-                file_data = stuff.split()
-                self.my_class_finder.find_class(file_data)
-                self.my_class_finder.relationship_finder(file_data)
-                self.all_my_classes = self.my_class_finder.get_all_my_classes()
+                self.find_all()
                 directory_name = FileHandler.choose_directory()
-                for a_plant_class in self.all_my_classes:
-                    content = PEP8Converter.create_class(a_plant_class)
-                    FileHandler.write_file(directory_name, content, a_plant_class)
+                self.write_all(directory_name)
 
             # Press 3 to start command line interpreter
             elif user_input == "3":
@@ -49,12 +42,29 @@ class Controller:
             else:
                 input("\nWrong option. Press enter to try again...")
 
+    def find_all(self):
+        self.data = self.data.split()
+        self.my_class_finder.find_class(self.data)
+        self.my_class_finder.relationship_finder(self.data)
+        self.all_my_classes = self.my_class_finder.get_all_my_classes()
+
+    def write_all(self, directory_name):
+        for a_plant_class in self.all_my_classes:
+            content = PEP8Converter.create_class(a_plant_class)
+            FileHandler.write_file(directory_name, content, a_plant_class)
+
     def command_line_interpreter(self):
         self.my_command_line_interpreter.do_greet("user")
         self.my_command_line_interpreter.cmdloop()
 
     def read_file_from_path(self, path):
-        FileHandler.read_file_from_path(path)
+        self.data = FileHandler.read_file_from_path(path)
+
+    def write_file_to_path(self, path):
+        self.find_all()
+        for a_plant_class in self.all_my_classes:
+            content = PEP8Converter.create_class(a_plant_class)
+            FileHandler.write_file_to_path(path, content, a_plant_class)
 
 
 if __name__ == "__main__":

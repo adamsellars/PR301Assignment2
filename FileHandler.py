@@ -57,10 +57,14 @@ class FileHandler:
             root.destroy()
             print("Error, no file inserted")
 
+    # Created by Adam different way to handle creating directories
     @staticmethod
-    def write_file_to_path(path: str, content: str) -> None:
+    def write_file_to_path(path: str, content: str, a_plant_class: str) -> None:
         try:
-            with open(path + ".py", "w+") as file:
+            name = a_plant_class.class_name
+            filename = path + name + ".py"
+            os.makedirs(os.path.dirname(filename), exist_ok=True)
+            with open(filename, "w+") as file:
                 file.write(content)
         except FileNotFoundError:
             print("Error, no file inserted")
