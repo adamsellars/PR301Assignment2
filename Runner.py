@@ -3,6 +3,8 @@ from FileHandler import FileHandler
 from ClassFinder import ClassFinder
 from PEP8Converter import PEP8Converter
 from CommandLineInterpreter import CommandLineInterpreter
+# from CmdArguments import CmdArguments
+from sys import argv
 
 
 class Controller:
@@ -12,6 +14,7 @@ class Controller:
         self.my_view = view
         self.all_my_classes = []
         self.my_command_line_interpreter = CommandLineInterpreter(self)
+        # self.my_cmd_arguments = CmdArguments(self)
         self.data = ""
 
     def start_menu(self) -> None:
@@ -63,7 +66,7 @@ class Controller:
     def write_file_to_path(self, path):
         self.find_all()
         for a_plant_class in self.all_my_classes:
-            self.pep8_content = PEP8Converter.create_class(a_plant_class)
+            PEP8Converter.create_class(a_plant_class)
             FileHandler.write_file_to_path(path, self.pep8_content, a_plant_class)
 
     def print_file_to_interpreter(self):
@@ -74,8 +77,27 @@ class Controller:
         return pep8
 
 
-if __name__ == "__main__":
+# Leroi wrote this
+def start_cmd():
     view = View()
     class_finder = ClassFinder()
     controller = Controller(class_finder, view)
-    controller.start_menu()
+    controller.command_line_interpreter()
+
+
+# Adam wrote this
+def correct_num_of_arguments(num_of_args):
+    if num_of_args == 1:
+        return True
+    else:
+        return False
+
+
+if __name__ == "__main__":
+    args = len(argv)
+    if correct_num_of_arguments(args):
+        start_cmd()
+    else:
+        print("Run 'Runner.py' only")
+
+
