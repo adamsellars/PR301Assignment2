@@ -69,7 +69,7 @@ file loaded...
 
 # Test 9
 # This should print a help text for the help function
->>> cmd.help_print_file("print_file")
+>>> cmd.do_help("print_file")
 ==================================================
 print_file command help
 ==================================================
@@ -78,6 +78,21 @@ Syntax: print_file
 Example: print_file test4.txt
 <BLANKLINE>
 
+# Test 10
+# Testing Controller Menu
+>>> controller = Controller(ClassFinder(), View())
+>>> controller.my_view.print_menu()
+<BLANKLINE>
+Press 1 to load your text file
+Press 2 to write from plantuml text to python code
+Press 3 to run the command line interpreter
+Press 5 to exit
+<BLANKLINE>
+
+# Test 11
+# Test PEP8Converter convert class function
+>>> PEP8Converter.convert_class("Controller")
+'class Controller:\\n'
 
 
 >>> cmd.do_quit("")
@@ -89,6 +104,7 @@ from View import View
 from ClassFinder import ClassFinder
 from Runner import Controller
 from Runner import CommandLineInterpreter
+from PEP8Converter import PEP8Converter
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
