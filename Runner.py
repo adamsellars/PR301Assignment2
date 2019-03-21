@@ -3,8 +3,6 @@ from FileHandler import FileHandler
 from ClassFinder import ClassFinder
 from PEP8Converter import PEP8Converter
 from CommandLineInterpreter import CommandLineInterpreter
-from matplotlib import pyplot as plt
-from Database import SQL
 
 
 class Controller:
@@ -40,24 +38,8 @@ class Controller:
             elif user_input == "3":
                 self.command_line_interpreter()
 
-            # Press 4 to write file to data base
-            elif user_input == "4":
-                if self.data is not None:
-                    self.prep_pep8()
-                    SQL.insert_data_into_table(self.pep8_content)
-                else:
-                    self.my_view.file_not_loaded_warning()
-
-            # Press 5 to print PEP8 class file to screen from database
-            elif user_input == "5":
-                if self.data is not None:
-                    self.prep_pep8()
-                    SQL.insert_data_into_table(self.pep8_content)
-                else:
-                    self.my_view.file_not_loaded_warning()
-
             # Exit
-            elif user_input == "6":
+            elif user_input == "5":
                 incorrect_input = False
                 print("\ngoodbye..\n")
 
@@ -72,6 +54,8 @@ class Controller:
 
     def write_all(self, directory_name):
         for a_plant_class in self.all_my_classes:
+            print("plant class:")
+            print(a_plant_class)
             content = PEP8Converter.create_class(a_plant_class)
             FileHandler.write_file(directory_name, content, a_plant_class)
 
@@ -94,13 +78,6 @@ class Controller:
         for a_plant_class in self.all_my_classes:
             pep8 += PEP8Converter.create_class(a_plant_class) + "\n"
         return pep8
-
-    def prep_pep8(self):
-        self.find_all()
-        pep8 = ""
-        for a_plant_class in self.all_my_classes:
-            pep8 += PEP8Converter.create_class(a_plant_class) + "\n"
-        self.pep8_content = pep8
 
 
 if __name__ == "__main__":

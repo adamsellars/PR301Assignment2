@@ -24,7 +24,7 @@ class CommandLineInterpreter(Cmd):
             "\nprint_file command help\n" +
             self.banner +
             "\nDescription: Print a PEP8 format text into the interpreter\n"
-            "Syntax: print_file \n"
+            "Syntax: print_file\n"
             "Example: print_file test4.txt\n"
         )
 
@@ -37,7 +37,7 @@ class CommandLineInterpreter(Cmd):
             "\nDescription: write a PEP8 format .txt file into path chosen\n"
             "Syntax: write_file [path]\n"
             "Parameter: [path] = full path name of the file starting from the root directory of this program\n"
-            "Example: load_file test4(myowncode).txt\n"
+            "Example: write_file test4(myowncode).txt\n"
         )
 
     # Created by Adam

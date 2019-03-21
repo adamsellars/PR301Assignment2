@@ -66,13 +66,6 @@ Error, file does not exist!
 file loaded...
 <BLANKLINE>
 
-# Test 9
->>> cmd.do_quit("")
-Goodbye thank you for using the command line interpreter
-True
-
-# ---------------------------------------------Created by Leroi---------------------------------
-
 # Test 10
 >>> cmd.help_print_file()
 ==================================================
@@ -83,20 +76,49 @@ Syntax: print_file
 Example: print_file test4.txt
 <BLANKLINE>
 
+# Test 9
+>>> cmd.do_quit("")
+Goodbye thank you for using the command line interpreter
+True
+
 # Test 11
 >>> cmd.help_write_file()
 ==================================================
-print_file command help
+write_file command help
 ==================================================
-Description: Print a PEP8 format text into the interpreter
-Syntax: print_file
-Example: print_file test4.txt
+Description: write a PEP8 format .txt file into path chosen
+Syntax: write_file [path]
+Parameter: [path] = full path name of the file starting from the root directory of this program
+Example: write_file test4(myowncode).txt
 <BLANKLINE>
-
 
 # Test 12 try to read protected file should get permission error message
 >>> cmd.do_load_file("no_permission.txt")
 Error, you do not have permission to access this file!
+
+# Tests for View
+>>> view = View()
+
+# Test 13
+>>> view.print_menu()
+<BLANKLINE>
+Press 1 to load your text file
+Press 2 to write from plantuml text to python code
+Press 3 to run the command line interpreter
+Press 5 to exit
+<BLANKLINE>
+
+# Test 14
+>>> view.file_empty_warning()
+File must not be empty
+
+# Test 15
+>>> view.file_not_loaded_warning()
+Must load a file first
+
+# Test 16
+>>> view.file_type_warning()
+File must be a .txt file type
 """
 
 from View import View

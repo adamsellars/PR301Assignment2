@@ -2,6 +2,7 @@ import unittest
 from FileHandler import FileHandler
 from ClassFinder import ClassFinder
 from ClassMaker import NewClass
+from PEP8Converter import PEP8Converter
 
 
 class FileHandlerTests(unittest.TestCase):
@@ -155,6 +156,36 @@ class ClassFinderTests(unittest.TestCase):
         self.test.relationship_finder(self.test_data)
         class_relationship = self.test.my_classes[0].relationship
         self.assertEqual(class_relationship, ["o-- ClassFinder", "-- FileHandler", "-- PEP8Converter", "o-- View"])
+
+
+class PEP8ConverterTests(unittest.TestCase):
+    def setUp(self):
+        # be executed before each test
+        self.test = PEP8Converter()
+
+    # Test convert_class
+    def test_20(self):
+        result = self.test.convert_class("Controller")
+        self.assertEqual(result, "class Controller:\n")
+
+    # Test convert_attribute
+    def test_21(self):
+        result = self.test.convert_attribute("attribute : String")
+        self.assertEqual(result, "    self.attribute = str    \n    ")
+
+    # Test convert_method
+    def test_22(self):
+        result = self.test.convert_method("get_all_my_classes(self) : list")
+        self.assertEqual(result, "\n    def get_all_my_classes(self) ->: list:\n        pass\n")
+
+    # Test create_relationship
+    def test_23(self):
+        result = self.test.create_relationship("Controller o-- ClassFinder", 0)
+        self.assertEqual(result, "\nobject0 = o--()")
+
+    def test_24(self):
+        result = self.test.create_relationship("Controller -- ClassFinder", 0)
+        self.assertEqual(result, "")
 
 
 if __name__ == '__main__':

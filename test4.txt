@@ -1,55 +1,48 @@
 @startuml
-ClassFinder *-- ClassMaker
+ClassFinder -- ClassMaker
 Controller o-- ClassFinder
 Controller -- FileHandler
 Controller -- PEP8Converter
 Controller o-- View
 
 class Controller {
-  my_class_finder : ClassFinder
-  my_view : View
-  all_my_classes : List
-  __init__(self, class_finder: Object, view: Object) : None
-  start_menu(self) : None
+  myClassFinder : ClassFinder
+  view : View
+  __init__(self, model: Object, view: Object) : None
+  start_menu() : None
 }
 
 class ClassFinder {
-  all_my_class : list
+  allMyClass : List
   __init__(self) : None
-  find_class(self, file_data: String) : None
-  get_all_my_classes(self) : list
-  relationship_finder(self, data: String) : None
+  find_class(self, file_data: String): None
+  get_all_my_classes(self) : List
 }
 
 class ClassMaker {
-  class_name : String
-  attribute : list
-  method : list
-  relationship : list
-  __init__(self, class_name: String) : None
+  className : String
+  attribute : List
+  method : List
+  relationship : List
+  __init__(self, className: String): None
   __str__(self) : None
-  add_method(self, method_name: String) : None
-  add_attribute(self, attribute: String) : None
-  add_relationship(self, relationship: String) : None
+  add_method(self, methodName: String): None
+  add_attribute(self, attribute: String): None
 }
 
 class View {
- print_menu(self) : None
+ print_menu() : String
 }
 
 class PEP8Converter {
-  create_relationship(plant_relationship: String, counter: int) : String
-  set_import(plant_relationship: String) : String
-  convert_class(plant_class_name: String) : String
-  convert_method(plant_method: String) : String
-  convert_attribute(plant_attribute: String) : String
-  convert_constructor(plant_method: String, pep8_attributes: String) : String
-  
-  create_class(plant_class_name: String, plant_method: String, plant_attribute: String) : String
+  convertClass(plantClassName: String) : String
+  convertMethod(plantMethod: String) : String
+  convertAttribute(plantAttribute: String) : String
+  createClass(plantClassName: String, plantMethod: String, plantAttribute: String) : String
 }
 
 class FileHandler {
-  read_file() : String
-  write_file() : None
+  readFile() : String
+  writeFile() : None
 }
 @enduml
