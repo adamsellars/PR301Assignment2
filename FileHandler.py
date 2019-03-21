@@ -64,6 +64,8 @@ class FileHandler:
     @staticmethod
     def write_file_to_path(path: str, content: str, a_plant_class: str) -> None:
         try:
+            if "/" not in path:
+                path = "generated_code/" + path
             name = a_plant_class.class_name
             filename = path + name + ".py"
             os.makedirs(os.path.dirname(filename), exist_ok=True)
