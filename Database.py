@@ -22,24 +22,18 @@ class SQL:
     def create_class_table():
         SQL.c.execute("""
         CREATE TABLE IF NOT EXISTS class (
-        classname VARCHAR(50),
-        attributes VARCHAR(50),
-        methods VARCHAR(50)
+        classname VARCHAR(150)
         );
         """)
 
 
 
     @staticmethod
-    def insert_data_into_table():
-        classes = [("PEP8Converter", "null", "find_class()"),
-                   ("ClassFinder", "all_my_classes", "convert_class()",
-                    "Controller", "self.view = View", "start_menu",
-                    "View", "null", "print_menu")]
+    def insert_data_into_table(classes):
         for aClass in classes:
             format_str = """INSERT INTO class (classname, attributes, methods)
-            VALUES ("{classname}", "{attributes}", "{methods}");"""
-            SQL.c.execute(format_str.format(classname=aClass[0], attributes=aClass[1], methods=aClass[2]))
+            VALUES ("{classname}");"""
+            SQL.c.execute(format_str.format(classname=aClass[0]))
             # never forget this, if you want the changes to be saved:
             SQL.connection.commit()
 
