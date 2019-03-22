@@ -40,7 +40,7 @@ load_file command help
 Description: Load a .txt file into the program
 Syntax: load_file [path]
 Parameter: [path] = full path name of the file starting from the root directory of this program
-Example: load_file test4(myowncode).txt
+Example: load_file test4.txt
 <BLANKLINE>
 
 # Test 6
@@ -61,7 +61,7 @@ Error, file does not exist!
 
 # Test 8
 # this file does exist should get a success message
->>> cmd.do_load_file("test4(myowncode).txt")
+>>> cmd.do_load_file("test4.txt")
 <BLANKLINE>
 file loaded...
 <BLANKLINE>
@@ -89,7 +89,7 @@ write_file command help
 Description: write a PEP8 format .txt file into path chosen
 Syntax: write_file [path]
 Parameter: [path] = full path name of the file starting from the root directory of this program
-Example: write_file test4(myowncode).txt
+Example: write_file test4.txt
 <BLANKLINE>
 
 # Test 12 try to read protected file should get permission error message

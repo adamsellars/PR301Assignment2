@@ -97,7 +97,7 @@ class ClassMakerTests(unittest.TestCase):
 class ClassFinderTests(unittest.TestCase):
     def setUp(self):
         # be executed before each test
-        with open("test4(myowncode).txt") as file:
+        with open("test4.txt") as file:
             self.test_data = file.read().split()
             # print(self.test_data)
             self.test = ClassFinder()
