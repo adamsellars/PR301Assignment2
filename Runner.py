@@ -3,7 +3,7 @@ from FileHandler import FileHandler
 from ClassFinder import ClassFinder
 from PEP8Converter import PEP8Converter
 from CommandLineInterpreter import CommandLineInterpreter
-
+from sys import argv
 
 class Controller:
 
@@ -38,8 +38,24 @@ class Controller:
             elif user_input == "3":
                 self.command_line_interpreter()
 
-            # Exit
+            # Press 4 to write file to data base
+            elif user_input == "4":
+                if self.data is not None:
+                    self.prep_pep8()
+                    SQL.insert_data_into_table(self.pep8_content)
+                else:
+                    self.my_view.file_not_loaded_warning()
+
+            # Press 5 to print PEP8 class file to screen from database
             elif user_input == "5":
+                if self.data is not None:
+                    self.prep_pep8()
+                    SQL.insert_data_into_table(self.pep8_content)
+                else:
+                    self.my_view.file_not_loaded_warning()
+
+            # Exit
+            elif user_input == "6":
                 incorrect_input = False
                 print("\ngoodbye..\n")
 
@@ -78,6 +94,30 @@ class Controller:
         for a_plant_class in self.all_my_classes:
             pep8 += PEP8Converter.create_class(a_plant_class) + "\n"
         return pep8
+
+    def prep_pep8(self):
+        self.find_all()
+        pep8 = ""
+        for a_plant_class in self.all_my_classes:
+            pep8 += PEP8Converter.create_class(a_plant_class) + "\n"
+        self.pep8_content = pep8
+
+
+# Leroi wrote this
+# def start_cmd():
+#     if __name__ == "__main__":
+#         view = View()
+#         class_finder = ClassFinder()
+#         controller = Controller(class_finder, view)
+#         controller.command_line_interpreter()
+
+
+# Adam wrote this
+# def correct_num_of_arguments(num_of_args):
+#     if num_of_args == 1:
+#         return True
+#     else:
+#         return False
 
 
 if __name__ == "__main__":
