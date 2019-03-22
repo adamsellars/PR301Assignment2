@@ -67,13 +67,13 @@ class Controller:
             else:
                 input("\nWrong option. Press enter to try again...")
 
-    def find_all(self):
+    def find_all(self) -> None:
         self.data = self.data.split()
         self.my_class_finder.find_class(self.data)
         self.my_class_finder.relationship_finder(self.data)
         self.all_my_classes = self.my_class_finder.get_all_my_classes()
 
-    def write_all(self, directory_name):
+    def write_all(self, directory_name) -> None:
         for a_plant_class in self.all_my_classes:
             content = PEP8Converter.create_class(a_plant_class)
             FileHandler.write_file(directory_name, content, a_plant_class)
@@ -117,30 +117,29 @@ class Controller:
             database_format.append(class_name)
             counter += 1
             class_list.append(database_format)
-        print(class_list)
         return class_list
 
 
-Leroi wrote this
+# Leroi wrote this
 def start_cmd():
     if __name__ == "__main__":
         view = View()
         class_finder = ClassFinder()
         controller = Controller(class_finder, view)
         controller.command_line_interpreter()
-
-
-Adam wrote this
-def correct_num_of_arguments(num_of_args):
-    if num_of_args == 2:
-        return True
-    else:
-        return False
+#
+#
+# Adam wrote this
+# def correct_num_of_arguments(num_of_args):
+#     if num_of_args == 2:
+#         return True
+#     else:
+#         return False
 
 
 if __name__ == "__main__":
-    len(argv)
-    view = View()
-    class_finder = ClassFinder()
-    controller = Controller(class_finder, view)
-    controller.start_menu()
+    start_cmd()
+    # view = View()
+    # class_finder = ClassFinder()
+    # controller = Controller(class_finder, view)
+    # controller.start_menu()

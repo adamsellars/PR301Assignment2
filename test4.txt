@@ -6,11 +6,22 @@ Controller -- PEP8Converter
 Controller o-- View
 
 class Controller {
-  my_class_finder : ClassFinder
-  my_view : View
-  all_my_classes : List
-  __init__(self, class_finder: Object, view: Object) : None
+  my_command_line_interpreter : CommandLineInterpreter()
+  data : None
+  pep8_content : None
+  my_class_finder : class_finder
+  my_view : view
+  all_my_classes : list
+  __init__(self, class_finder: ClassFinder, view: View) : None
   start_menu(self) : None
+  find_all() : None
+  write_all(directory_name: String) : None
+  command_line_interpreter() :None
+  read_file_from_path(path: String) : None
+  write_file_to_path(path: String) : None
+  print_file_to_interpreter() : String
+  prep_pep8() : None
+  get_class_names() : list
 }
 
 class ClassFinder {
@@ -18,7 +29,7 @@ class ClassFinder {
   __init__(self) : None
   find_class(self, file_data: String) : None
   get_all_my_classes(self) : list
-  relationship_finder(self, data: String) : None
+  relationship_finder(self, file_data: String) : None
 }
 
 class ClassMaker {
@@ -27,7 +38,7 @@ class ClassMaker {
   method : list
   relationship : list
   __init__(self, class_name: String) : None
-  __str__(self) : None
+  __str__(self) : String
   add_method(self, method_name: String) : None
   add_attribute(self, attribute: String) : None
   add_relationship(self, relationship: String) : None
