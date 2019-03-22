@@ -4,6 +4,7 @@ import sqlite3
 class SQL:
     connection = None
     c = None
+    classes = None
 
     @staticmethod
     def connect_to_db(db_name):
@@ -22,19 +23,17 @@ class SQL:
     def create_class_table():
         SQL.c.execute("""
         CREATE TABLE IF NOT EXISTS class (
+        key varchar(10),
         classname VARCHAR(150)
         );
         """)
 
-
-
     @staticmethod
     def insert_data_into_table(classes):
         for aClass in classes:
-            format_str = """INSERT INTO class (classname, attributes, methods)
-            VALUES ("{classname}");"""
-            SQL.c.execute(format_str.format(classname=aClass[0]))
-            # never forget this, if you want the changes to be saved:
+            format_str = """INSERT INTO class (key, classname)
+            VALUES ("{key}", "{classname}");"""
+            SQL.c.execute(format_str.format(key=aClass[0], classname=aClass[1]))
             SQL.connection.commit()
 
     @staticmethod
@@ -58,8 +57,10 @@ class SQL:
         SQL.connection.close()
 
 
-SQL.connect_to_db("assignment1")
-SQL.create_class_table()
-SQL.insert_data_into_table()
-SQL.fetch_all_class_data()
-SQL.disconnect_db()
+# classes = [("1", "Controller"), ("2", "View")]
+# SQL.connect_to_db("assignment1")
+# SQL.c.execute("""DROP TABLE class;""")
+# SQL.create_class_table()
+# SQL.insert_data_into_table()
+# SQL.fetch_all_class_data()
+

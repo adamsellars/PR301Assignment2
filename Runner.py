@@ -4,6 +4,8 @@ from ClassFinder import ClassFinder
 from PEP8Converter import PEP8Converter
 from CommandLineInterpreter import CommandLineInterpreter
 from sys import argv
+from Database import SQL
+
 
 class Controller:
 
@@ -12,8 +14,8 @@ class Controller:
         self.my_view = view
         self.all_my_classes = []
         self.my_command_line_interpreter = CommandLineInterpreter(self)
-        self.data = None
-        self.pep8_content = None
+        self.data = str
+        self.pep8_content = str
 
     def start_menu(self) -> None:
         incorrect_input = True
@@ -40,17 +42,20 @@ class Controller:
 
             # Press 4 to write file to data base
             elif user_input == "4":
+                classes = []
+                SQL.connect_to_db("assignment1")
+                SQL.c.execute("""DROP TABLE class;""")
+                SQL.create_class_table()
                 if self.data is not None:
-                    self.prep_pep8()
-                    SQL.insert_data_into_table(self.pep8_content)
+                    classes = self.get_class_names()
+                    SQL.insert_data_into_table(classes)
                 else:
                     self.my_view.file_not_loaded_warning()
 
             # Press 5 to print PEP8 class file to screen from database
             elif user_input == "5":
                 if self.data is not None:
-                    self.prep_pep8()
-                    SQL.insert_data_into_table(self.pep8_content)
+                    SQL.fetch_all_class_data()
                 else:
                     self.my_view.file_not_loaded_warning()
 
@@ -70,8 +75,6 @@ class Controller:
 
     def write_all(self, directory_name):
         for a_plant_class in self.all_my_classes:
-            print("plant class:")
-            print(a_plant_class)
             content = PEP8Converter.create_class(a_plant_class)
             FileHandler.write_file(directory_name, content, a_plant_class)
 
@@ -102,25 +105,41 @@ class Controller:
             pep8 += PEP8Converter.create_class(a_plant_class) + "\n"
         self.pep8_content = pep8
 
+    def get_class_names(self):
 
-# Leroi wrote this
-# def start_cmd():
-#     if __name__ == "__main__":
-#         view = View()
-#         class_finder = ClassFinder()
-#         controller = Controller(class_finder, view)
-#         controller.command_line_interpreter()
+        class_list = []
+        counter = 1
+        total_classes = len(self.all_my_classes)
+        for aClass in self.all_my_classes:
+            database_format = []
+            class_name = aClass.class_name
+            database_format.append("{}".format(counter))
+            database_format.append(class_name)
+            counter += 1
+            class_list.append(database_format)
+        print(class_list)
+        return class_list
 
 
-# Adam wrote this
-# def correct_num_of_arguments(num_of_args):
-#     if num_of_args == 1:
-#         return True
-#     else:
-#         return False
+Leroi wrote this
+def start_cmd():
+    if __name__ == "__main__":
+        view = View()
+        class_finder = ClassFinder()
+        controller = Controller(class_finder, view)
+        controller.command_line_interpreter()
+
+
+Adam wrote this
+def correct_num_of_arguments(num_of_args):
+    if num_of_args == 2:
+        return True
+    else:
+        return False
 
 
 if __name__ == "__main__":
+    len(argv)
     view = View()
     class_finder = ClassFinder()
     controller = Controller(class_finder, view)
