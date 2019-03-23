@@ -101,6 +101,7 @@ class ClassFinderTests(unittest.TestCase):
             self.test_data = file.read().split()
             # print(self.test_data)
             self.test = ClassFinder()
+            self.maxDiff = None
 
     # check that classes have been added
     def test_11(self):
@@ -110,7 +111,7 @@ class ClassFinderTests(unittest.TestCase):
     # check that the correct number of classes are added
     def test_12(self):
         self.test.find_class(self.test_data)
-        self.assertEqual(self.test.my_classes.__len__(), 6)
+        self.assertEqual(self.test.my_classes.__len__(), 8)
 
     # check that the first added class has the correct class name
     def test_13(self):
@@ -122,40 +123,60 @@ class ClassFinderTests(unittest.TestCase):
     def test_14(self):
         self.test.find_class(self.test_data)
         last_class = self.test.my_classes[-1].class_name
-        self.assertEqual(last_class, "FileHandler")
+        self.assertEqual(last_class, "CommandLineInterpreter")
 
     # check that the first classes attributes are correctly added
     def test_15(self):
         self.test.find_class(self.test_data)
         first_class_attributes = self.test.my_classes[0].attribute
-        self.assertEqual(first_class_attributes, ["my_class_finder : ClassFinder", "my_view : View",
-                                                  "all_my_classes : List"])
+        self.assertEqual(first_class_attributes, ['my_command_line_interpreter : CommandLineInterpreter',
+                                                  'data : None', 'pep8_content : None',
+                                                  'my_class_finder : class_finder', 'my_view : view',
+                                                  'all_my_classes : list'])
 
     # check that the last classes attributes are correctly added
     def test_16(self):
         self.test.find_class(self.test_data)
         last_class_attributes = self.test.my_classes[-1].attribute
-        self.assertEqual(last_class_attributes, [])
+        self.assertEqual(last_class_attributes, ['prompt : String', 'my_controller : controller', 'banner : string'])
 
     # check that the first classes methods are correctly added
     def test_17(self):
         self.test.find_class(self.test_data)
         first_class_methods = self.test.my_classes[0].method
-        self.assertEqual(first_class_methods, [" __init__(self, class_finder: Object, view: Object): None",
-                                               "start_menu(self): None"])
+        self.assertEqual(first_class_methods, [" __init__(self, class_finder: ClassFinder, view: View): None",
+                                               "start_menu(self): None",
+                                               "find_all(self): None",
+                                               " write_all(self, directory_name: String): None",
+                                               "command_line_interpreter(self): None",
+                                               " read_file_from_path(self, path: String): None",
+                                               " write_file_to_path(self, path: String): None",
+                                               "print_file_to_interpreter(self): String",
+                                               "prep_pep8(self): None",
+                                               "get_class_names(self): List"])
 
     # check that the last classes methods are correctly added
     def test_18(self):
         self.test.find_class(self.test_data)
         last_class_methods = self.test.my_classes[-1].method
-        self.assertEqual(last_class_methods, ["read_file(): String", "write_file(): None"])
+        self.assertEqual(last_class_methods, [' __init__(self, controller: Controller): None',
+                                              ' do_load_self(self, path: String): None',
+                                              ' do_write_file(self, path: String): None',
+                                              'help_print_file(self): None',
+                                              'help_write_file(self): None',
+                                              'help_load_file(self): None',
+                                              'help_quit(self): None',
+                                              'help_greet(self): None',
+                                              ' do_greet(self, line: None): None',
+                                              ' do_print_file(self, line: None): None',
+                                              ' do_quit(self, line: None): None'])
 
     # check that a classes relationship is correctly added
     def test_19(self):
         self.test.find_class(self.test_data)
         self.test.relationship_finder(self.test_data)
         class_relationship = self.test.my_classes[0].relationship
-        self.assertEqual(class_relationship, ["o-- ClassFinder", "-- FileHandler", "-- PEP8Converter", "o-- View"])
+        self.assertEqual(class_relationship, ["-- ClassFinder", "-- FileHandler", "-- PEP8Converter", "-- View"])
 
 
 class PEP8ConverterTests(unittest.TestCase):
@@ -185,7 +206,7 @@ class PEP8ConverterTests(unittest.TestCase):
 
     def test_24(self):
         result = self.test.create_relationship("Controller -- ClassFinder", 0)
-        self.assertEqual(result, "")
+        self.assertEqual(result, "\nobject0 = --()")
 
 
 if __name__ == '__main__':

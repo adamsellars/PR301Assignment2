@@ -1,9 +1,9 @@
 @startuml
-ClassFinder *-- ClassMaker
-Controller o-- ClassFinder
+ClassFinder -- ClassMaker
+Controller -- ClassFinder
 Controller -- FileHandler
 Controller -- PEP8Converter
-Controller o-- View
+Controller -- View
 
 class Controller {
   my_command_line_interpreter : CommandLineInterpreter
@@ -14,17 +14,17 @@ class Controller {
   all_my_classes : list
   __init__(self, class_finder: ClassFinder, view: View) : None
   start_menu(self) : None
-  find_all() : None
-  write_all(directory_name: String) : None
-  command_line_interpreter() :None
-  read_file_from_path(path: String) : None
-  write_file_to_path(path: String) : None
-  print_file_to_interpreter() : String
-  prep_pep8() : None
-  get_class_names() : list
+  find_all(self) : None
+  write_all(self, directory_name: String) : None
+  command_line_interpreter(self) : None
+  read_file_from_path(self, path: String) : None
+  write_file_to_path(self, path: String) : None
+  print_file_to_interpreter(self) : String
+  prep_pep8(self) : None
+  get_class_names(self) : List
 }
 
-class ClassFinder {
+class ClassFinder {  
   all_my_class : list
   __init__(self) : None
   find_class(self, file_data: String) : None
@@ -58,8 +58,7 @@ class PEP8Converter {
   convert_class(plant_class_name: String) : String
   convert_method(plant_method: String) : String
   convert_attribute(plant_attribute: String) : String
-  convert_constructor(plant_method: String, pep8_attributes: String) : String
-  
+  convert_constructor(plant_method: String, pep8_attributes: String) : String  
   create_class(plant_class_name: String, plant_method: String, plant_attribute: String) : String
 }
 
@@ -83,10 +82,10 @@ class SQL {
 }
 
 class CommandLineInterpreter {
-  __init__(self, controller: Controller)
   prompt : String
   my_controller : controller
   banner : string
+  __init__(self, controller: Controller) : None
   do_load_self(self, path: String) : None
   do_write_file(self, path: String) : None
   help_print_file(self) : None
@@ -97,7 +96,5 @@ class CommandLineInterpreter {
   do_greet(self, line: None) : None
   do_print_file(self, line: None) : None
   do_quit(self, line: None) : None
-
 }
-
 @enduml

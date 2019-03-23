@@ -4,6 +4,7 @@ Controller -- FileHandler
 Controller -- PEP8Converter
 Controller -- View
 Controller -- CommandLineInterpreter
+CommandLineInterpreter -- Controller
 
 
 class Controller {
@@ -15,14 +16,14 @@ class Controller {
   all_my_classes : list
   __init__(self, class_finder: ClassFinder, view: View) : None
   start_menu(self) : None
-  find_all() : None
-  write_all(directory_name: String) : None
-  command_line_interpreter() : None
-  read_file_from_path(path: String) : None
-  write_file_to_path(path: String) : None
-  print_file_to_interpreter() : String
-  prep_pep8() : None
-  get_class_names() : list
+  find_all(self) : None
+  write_all(self, directory_name: String) : None
+  command_line_interpreter(self) : None
+  read_file_from_path(self, path: String) : None
+  write_file_to_path(self, path: String) : None
+  print_file_to_interpreter(self) : String
+  prep_pep8(self) : None
+  get_class_names(self) : list
 }
 
 class ClassFinder {
@@ -60,6 +61,7 @@ class PEP8Converter {
   convert_method(plant_method: String) : String
   convert_attribute(plant_attribute: String) : String
   convert_constructor(plant_method: String, pep8_attributes: String) : String
+  
   create_class(plant_class_name: String, plant_method: String, plant_attribute: String) : String
 }
 
@@ -82,7 +84,7 @@ class SQL {
   disconnect_db() : None
 }
 
-class CommandLineInterpreter {
+class CommandLineInterpreter {  
   __init__(self, controller: Controller) : None
   prompt : String
   my_controller : controller

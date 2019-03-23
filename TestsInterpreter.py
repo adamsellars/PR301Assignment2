@@ -40,7 +40,7 @@ load_file command help
 Description: Load a .txt file into the program
 Syntax: load_file [path]
 Parameter: [path] = full path name of the file starting from the root directory of this program
-Example: load_file test4.txt
+Example: load_file test4(myowncode).txt
 <BLANKLINE>
 
 # Test 6
@@ -89,7 +89,7 @@ write_file command help
 Description: write a PEP8 format .txt file into path chosen
 Syntax: write_file [path]
 Parameter: [path] = full path name of the file starting from the root directory of this program
-Example: write_file test4.txt
+Example: write_file test4(myowncode).txt
 <BLANKLINE>
 
 # Test 12 try to read protected file should get permission error message
@@ -105,7 +105,9 @@ Error, you do not have permission to access this file!
 Press 1 to load your text file
 Press 2 to write from plantuml text to python code
 Press 3 to run the command line interpreter
-Press 5 to exit
+Press 4 to write file to database
+Press 5 to print  class names from database to screen
+Press 6 to exit
 <BLANKLINE>
 
 # Test 14
@@ -123,8 +125,8 @@ File must be a .txt file type
 
 from View import View
 from ClassFinder import ClassFinder
-from Runner import Controller
-from Runner import CommandLineInterpreter
+from Controller import Controller
+from Controller import CommandLineInterpreter
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
