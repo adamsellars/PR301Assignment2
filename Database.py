@@ -45,22 +45,6 @@ class SQL:
             print(r)
 
     @staticmethod
-    def fetch_one_class_data():
-        SQL.c.execute("SELECT * FROM class")
-        print("\nfetch one:")
-        res = SQL.c.fetchone()
-        print(res)
-
-    @staticmethod
     def disconnect_db():
         SQL.c.close()
         SQL.connection.close()
-
-
-# classes = [("1", "Controller"), ("2", "View")]
-# SQL.connect_to_db("assignment1")
-# SQL.c.execute("""DROP TABLE class;""")
-# SQL.create_class_table()
-# SQL.insert_data_into_table()
-# SQL.fetch_all_class_data()
-

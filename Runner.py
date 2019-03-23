@@ -3,7 +3,6 @@ from FileHandler import FileHandler
 from ClassFinder import ClassFinder
 from PEP8Converter import PEP8Converter
 from CommandLineInterpreter import CommandLineInterpreter
-from sys import argv
 from Database import SQL
 
 
@@ -42,7 +41,6 @@ class Controller:
 
             # Press 4 to write file to data base
             elif user_input == "4":
-                classes = []
                 SQL.connect_to_db("assignment1")
                 SQL.c.execute("""DROP TABLE class;""")
                 SQL.create_class_table()
@@ -126,7 +124,8 @@ def start_cmd():
         view = View()
         class_finder = ClassFinder()
         controller = Controller(class_finder, view)
-        controller.command_line_interpreter()
+        controller.start_menu()
+
 #
 #
 # Adam wrote this

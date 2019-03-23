@@ -6,8 +6,8 @@ class View:
                "Press 1 to load your text file\n"
                "Press 2 to write from plantuml text to python code\n"
                "Press 3 to run the command line interpreter\n"
-               "Press 4 to write file to data base\n"
-               "Press 5 to print PEP8 class file to screen\n"
+               "Press 4 to write file to database\n"
+               "Press 5 to print  class names from database to screen\n"
                "Press 6 to exit"
                "\n")
 
