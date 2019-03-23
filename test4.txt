@@ -6,7 +6,7 @@ Controller -- PEP8Converter
 Controller o-- View
 
 class Controller {
-  my_command_line_interpreter : CommandLineInterpreter()
+  my_command_line_interpreter : CommandLineInterpreter
   data : None
   pep8_content : None
   my_class_finder : class_finder

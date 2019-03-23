@@ -67,6 +67,7 @@ class Controller:
 
     def find_all(self) -> None:
         self.data = self.data.split()
+        # print(self.data)
         self.my_class_finder.find_class(self.data)
         self.my_class_finder.relationship_finder(self.data)
         self.all_my_classes = self.my_class_finder.get_all_my_classes()

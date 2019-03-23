@@ -7,7 +7,7 @@ Controller -- CommandLineInterpreter
 
 
 class Controller {
-  my_command_line_interpreter : CommandLineInterpreter()
+  my_command_line_interpreter : CommandLineInterpreter
   data : None
   pep8_content : None
   my_class_finder : class_finder
@@ -17,7 +17,7 @@ class Controller {
   start_menu(self) : None
   find_all() : None
   write_all(directory_name: String) : None
-  command_line_interpreter() :None
+  command_line_interpreter() : None
   read_file_from_path(path: String) : None
   write_file_to_path(path: String) : None
   print_file_to_interpreter() : String
@@ -54,13 +54,12 @@ class View {
 
 class PEP8Converter {
   create_relationship(plant_relationship: String, counter: int) : String
-  create_class(plant_class_name: String) -> String
+  create_class(plant_class_name: String) : String
   set_import(plant_relationship: String) : String
   convert_class(plant_class_name: String) : String
   convert_method(plant_method: String) : String
   convert_attribute(plant_attribute: String) : String
   convert_constructor(plant_method: String, pep8_attributes: String) : String
-  
   create_class(plant_class_name: String, plant_method: String, plant_attribute: String) : String
 }
 
@@ -78,13 +77,13 @@ class SQL {
   classes : None
   connect_to_db(db_name: String) : None
   create_class_table() : None
-  insert_data_into_table(classes : list) : None
+  insert_data_into_table(classes: list) : None
   fetch_all_class_data() : None
   disconnect_db() : None
 }
 
 class CommandLineInterpreter {
-  __init__(self, controller: Controller)
+  __init__(self, controller: Controller) : None
   prompt : String
   my_controller : controller
   banner : String

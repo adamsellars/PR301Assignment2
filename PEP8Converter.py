@@ -9,7 +9,7 @@ class PEP8Converter:
     # for a relationship in a class, if relationship equal to composition, then format code to PEP8 else return nothing.
     @staticmethod
     def create_relationship(plant_relationship: str, counter: int) -> str:
-        if "o--" in plant_relationship:
+        if "--" in plant_relationship:
             relationships = plant_relationship.split()
             relationship_content = "\nobject{} = {}()".format(counter, relationships[1])
             return relationship_content
@@ -18,7 +18,7 @@ class PEP8Converter:
 
     @staticmethod
     def set_import(plant_relationship: str) -> str:
-        if "o--" in plant_relationship:
+        if "--" in plant_relationship:
             relationships = plant_relationship.split()
             import_statement = 'from {} import {}\n'.format(relationships[1], relationships[1])
             return import_statement
@@ -55,6 +55,7 @@ class PEP8Converter:
 
     @staticmethod
     def convert_method(plant_method: str) -> str:
+        print(plant_method)
         if "String" in plant_method:
             plant_method = plant_method.replace("String", "str")
         elif "Object" in plant_method:
