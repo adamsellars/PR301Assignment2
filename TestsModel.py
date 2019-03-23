@@ -5,6 +5,7 @@ from ClassMaker import NewClass
 from PEP8Converter import PEP8Converter
 
 
+# ---------------------------------Created by Leroi------------------------------------------------
 class FileHandlerTests(unittest.TestCase):
     # FileHandler tests
     # read_file_from_path
@@ -34,6 +35,7 @@ class FileHandlerTests(unittest.TestCase):
             self.test.read_file_from_path("no_permission.txt")
         except PermissionError:
             self.fail("Exception handling failed to handle permission error")
+
 
 class ClassMakerTests(unittest.TestCase):
     def setUp(self):
@@ -91,9 +93,7 @@ class ClassMakerTests(unittest.TestCase):
         self.assertEqual(self.test.relationship[2], "class1 *-- class4")
 
 
-
-
-
+# ---------------------------------Created by Adam-------------------------------------------------
 class ClassFinderTests(unittest.TestCase):
     def setUp(self):
         # be executed before each test

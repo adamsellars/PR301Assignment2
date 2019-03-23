@@ -66,6 +66,12 @@ Error, file does not exist!
 file loaded...
 <BLANKLINE>
 
+# Test 9
+>>> cmd.do_quit("")
+Goodbye thank you for using the command line interpreter
+True
+
+# ---------------------------------------------Created by Leroi---------------------------------
 # Test 10
 >>> cmd.help_print_file()
 ==================================================
@@ -75,11 +81,6 @@ Description: Print a PEP8 format text into the interpreter
 Syntax: print_file
 Example: print_file test4.txt
 <BLANKLINE>
-
-# Test 9
->>> cmd.do_quit("")
-Goodbye thank you for using the command line interpreter
-True
 
 # Test 11
 >>> cmd.help_write_file()
