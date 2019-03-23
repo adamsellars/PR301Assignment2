@@ -69,7 +69,10 @@ class PEP8Converter:
                         plant_method = list(plant_method)
                         plant_method[j+1] = " ->"
                         my_method = "".join(plant_method).lstrip()
-        pep8_method = "\n    def {}:\n        pass\n".format(my_method)
+        if "self" not in my_method:
+            pep8_method = "\n    @staticmethod\n    def {}:\n        pass\n".format(my_method)
+        else:
+            pep8_method = "\n    def {}:\n        pass\n".format(my_method)
         return pep8_method
 
     @staticmethod
