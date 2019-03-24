@@ -36,9 +36,7 @@ class PEP8Converter:
         for a_method in plant_class_name.method:
             if "init" in a_method:
                 for an_attribute in plant_class_name.attribute:
-                    # print("I am an attribute: ", an_attribute)
                     attributes += PEP8Converter.convert_attribute(an_attribute)
-                    # print(attributes)
                 methods += PEP8Converter.convert_constructor(a_method, attributes)
             else:
                 methods += PEP8Converter.convert_method(a_method)
@@ -54,7 +52,6 @@ class PEP8Converter:
 
     @staticmethod
     def convert_method(plant_method: str) -> str:
-        print(plant_method)
         if "String" in plant_method:
             plant_method = plant_method.replace("String", "str")
         elif "Object" in plant_method:

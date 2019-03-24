@@ -6,6 +6,7 @@ class SQL:
     c = None
     classes = None
 
+    # Adam wrote this
     @staticmethod
     def connect_to_db(db_name):
         try:
@@ -19,6 +20,7 @@ class SQL:
             print("Finishing connecting to database")
             SQL.c = SQL.connection.cursor()
 
+    # Adam wrote this
     @staticmethod
     def create_class_table():
         SQL.c.execute("""
@@ -28,6 +30,7 @@ class SQL:
         );
         """)
 
+    # Leroi wrote this
     @staticmethod
     def insert_data_into_table(classes):
         for aClass in classes:
@@ -36,6 +39,7 @@ class SQL:
             SQL.c.execute(format_str.format(key=aClass[0], classname=aClass[1]))
             SQL.connection.commit()
 
+    # Leroi wrote this
     @staticmethod
     def fetch_all_class_data():
         SQL.c.execute("SELECT * FROM class")
@@ -44,6 +48,7 @@ class SQL:
         for r in result:
             print(r)
 
+    # Leroi wrote this
     @staticmethod
     def disconnect_db():
         SQL.c.close()
