@@ -56,21 +56,30 @@ class Controller:
 
             # Press 5 to print PEP8 class file to screen from database
             elif user_input == "5":
-                if self.data is not None:
-                    SQL.fetch_all_class_data()
-                else:
+                try:
+                    if self.data is not None:
+                        SQL.fetch_all_class_data()
+                    else:
+                        self.my_view.file_not_loaded_warning()
+                except AttributeError:
                     self.my_view.file_not_loaded_warning()
 
             # Press 6 to load text file, convert data to PEP8 python format then convert file to pickle
             # format in same directory
             elif user_input == "6":
-                self.data = FileHandler.read_file()
-                self.prep_pep8()
-                Pickler.pickle_file(self.pep8_content)
+                try:
+                    self.data = FileHandler.read_file()
+                    self.prep_pep8()
+                    Pickler.pickle_file(self.pep8_content)
+                except AttributeError:
+                    self.my_view.file_not_loaded_warning()
 
             # Press 7 to load data from pickle file
             elif user_input == "7":
-                Pickler.unpickle_file()
+                try:
+                    Pickler.unpickle_file()
+                except FileNotFoundError:
+                    self.my_view.file_not_loaded_warning()
 
             # Exit
             elif user_input == "8":
