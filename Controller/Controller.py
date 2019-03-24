@@ -34,12 +34,10 @@ class Controller:
                         self.find_all()
                         directory_name = FileHandler.choose_directory()
                         self.write_all(directory_name)
-                except PermissionError:
-                    self.exit_file_directory()
                 except TypeError:
                     self.my_view.file_not_loaded_warning()
                 else:
-                    self.my_view.file_not_loaded_warning()
+                    self.my_view.exit_file_directory()
 
             # Press 3 to start command line interpreter
             elif user_input == "3":
