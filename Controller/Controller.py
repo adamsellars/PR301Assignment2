@@ -4,6 +4,7 @@ from Model.ClassFinder import ClassFinder
 from Model.PEP8Converter import PEP8Converter
 from View.CommandLineInterpreter import CommandLineInterpreter
 from Database import SQL
+from Pickle import Pickler
 
 
 class Controller:
@@ -58,8 +59,19 @@ class Controller:
                 else:
                     self.my_view.file_not_loaded_warning()
 
-            # Exit
+            # Press 6 to load text file, convert data to PEP8 python format then convert file to pickle
+            # format in same directory
             elif user_input == "6":
+                self.data = FileHandler.read_file()
+                self.prep_pep8()
+                Pickler.pickle_file(self.pep8_content)
+
+            # Press 7 to load data from pickle file
+            elif user_input == "7":
+                Pickler.unpickle_file()
+
+            # Exit
+            elif user_input == "8":
                 incorrect_input = False
                 print("\ngoodbye..\n")
 
