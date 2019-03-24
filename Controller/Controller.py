@@ -26,14 +26,18 @@ class Controller:
             # Press 1 to load your text file
             if user_input == "1":
                 self.data = FileHandler.read_file()
-                print(self.data)
 
             # Press 2 to write from plantuml text to python code
             elif user_input == "2":
-                if self.data is not None:
-                    self.find_all()
-                    directory_name = FileHandler.choose_directory()
-                    self.write_all(directory_name)
+                try:
+                    if self.data is not None:
+                        self.find_all()
+                        directory_name = FileHandler.choose_directory()
+                        self.write_all(directory_name)
+                except PermissionError:
+                    self.exit_file_directory()
+                except TypeError:
+                    self.my_view.file_not_loaded_warning()
                 else:
                     self.my_view.file_not_loaded_warning()
 
