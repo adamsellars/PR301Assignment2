@@ -145,4 +145,9 @@ class ClassFinderTests {
   setUp(self) : None
   test_04(self) : None
 }
+
+class Pickler {
+  pickle_file(file_data: String) : None
+  unpickle_file() : None
+}
 @enduml
