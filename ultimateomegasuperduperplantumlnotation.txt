@@ -51,6 +51,7 @@ class View {
   file_not_loaded_warning() : None
   file_empty_warning() : None
   file_type_warning() : None
+  exit_file_directory() : None
 }
 
 class PEP8Converter {
