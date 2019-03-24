@@ -60,8 +60,7 @@ class PEP8Converter {
   convert_class(plant_class_name: String) : String
   convert_method(plant_method: String) : String
   convert_attribute(plant_attribute: String) : String
-  convert_constructor(plant_method: String, pep8_attributes: String) : String
-  
+  convert_constructor(plant_method: String, pep8_attributes: String) : String  
   create_class(plant_class_name: String, plant_method: String, plant_attribute: String) : String
 }
 
@@ -146,6 +145,4 @@ class ClassFinderTests {
   setUp(self) : None
   test_04(self) : None
 }
-
-
 @enduml
