@@ -3,8 +3,8 @@ from View.FileHandler import FileHandler
 from Model.ClassFinder import ClassFinder
 from Model.PEP8Converter import PEP8Converter
 from View.CommandLineInterpreter import CommandLineInterpreter
-from Database import SQL
-from Pickle import Pickler
+from Model.Database import SQL
+from Model.Pickle import Pickler
 
 
 class Controller:
