@@ -27,7 +27,7 @@ class FileHandler:
             with open(path) as file:
                 data = file.read()
                 print("\nfile loaded...\n")
-                assert(data is str, "data must be a String data type")
+                assert data is str, "data must be a String data type"
                 return data
         except FileNotFoundError:
             print("Error, file does not exist!")
@@ -53,7 +53,6 @@ class FileHandler:
         try:
             with open(directory_name + "/{}.py".format(file_name), "w+") as f:
                 f.write(content)
-                f.close()
                 root.destroy()
 
         except FileNotFoundError:
@@ -61,7 +60,7 @@ class FileHandler:
             print("Error, no file inserted")
         except PermissionError:
             root.destroy()
-            print("Error, you do not have permission to access this file!")
+            pass
 
     # Created by Adam different way to handle creating directories
     @staticmethod

@@ -23,3 +23,5 @@ class View:
     def file_type_warning(self):
         print("File must be a .txt file type")
 
+    def exit_file_directory(self):
+        print("Exiting file directory dialogue...")
