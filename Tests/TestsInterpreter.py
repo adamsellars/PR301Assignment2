@@ -103,12 +103,26 @@ Error, you do not have permission to access this file!
 # Test 13
 >>> view.print_menu()
 <BLANKLINE>
+------------------------------------------------------
 Press 1 to load your text file
+------------------------------------------------------
 Press 2 to write from plantuml text to python code
+------------------------------------------------------
 Press 3 to run the command line interpreter
+------------------------------------------------------
 Press 4 to write file to database
-Press 5 to print  class names from database to screen
-Press 6 to exit
+------------------------------------------------------
+Press 5 to print class names from database to screen
+------------------------------------------------------
+Press 6 to load text file, convert data to PEP8 python
+		format then convert file to pickle format in
+		same directory
+------------------------------------------------------
+Press 7 to load data from pickle file
+------------------------------------------------------
+Press 8 to exit
+------------------------------------------------------
+<BLANKLINE>
 <BLANKLINE>
 
 # Test 14
@@ -124,10 +138,10 @@ Must load a file first
 File must be a .txt file type
 """
 
-from View import View
+from View.View import View
 from Model.ClassFinder import ClassFinder
-from Controller import Controller
-from Controller import CommandLineInterpreter
+from Controller.Controller import Controller
+from Controller.Controller import CommandLineInterpreter
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
