@@ -48,11 +48,16 @@ class Controller:
             # Press 4 to write file to data base
             elif user_input == "4":
                 if self.data is not "":
-                    SQL.connect_to_db("assignment1")
-                    SQL.c.execute("""DROP TABLE if exists class;""")
-                    SQL.create_class_table()
-                    classes = self.get_class_names()
-                    SQL.insert_data_into_table(classes)
+                    error_message = SQL.connect_to_db("assignment1")
+                    if error_message == PermissionError:
+                        self.my_view.user_has_no_file_permission()
+                    elif error_message == FileNotFoundError:
+                        self.my_view.file_not_found_message()
+                    else:
+                        SQL.c.execute("""DROP TABLE if exists class;""")
+                        SQL.create_class_table()
+                        classes = self.get_class_names()
+                        SQL.insert_data_into_table(classes)
                 else:
                     self.my_view.file_not_loaded_warning()
 
