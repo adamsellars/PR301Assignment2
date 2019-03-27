@@ -9,14 +9,14 @@ CommandLineInterpreter -- Controller
 
 class Controller {
   my_command_line_interpreter : CommandLineInterpreter
-  data : None
-  pep8_content : None
+  data : String
+  pep8_content : String
   my_class_finder : class_finder
   my_view : view
   all_my_classes : list
   __init__(self, class_finder: ClassFinder, view: View) : None
-  start_menu(self) : None
-  find_all(self) : None
+  start_menu(self) : String
+  find_all(self) : String
   write_all(self, directory_name: String) : None
   command_line_interpreter(self) : None
   read_file_from_path(self, path: String) : None
@@ -52,6 +52,11 @@ class View {
   file_empty_warning() : None
   file_type_warning() : None
   exit_file_directory() : None
+  user_has_wrong_input() : String
+  exit_program() : None
+  get_user_menu_option() : String
+  file_loaded_message() : None
+  file_not_found_message() : None
 }
 
 class PEP8Converter {
