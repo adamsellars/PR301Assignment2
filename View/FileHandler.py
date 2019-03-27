@@ -12,12 +12,11 @@ class FileHandler:
             name_of_file = filedialog.askopenfilename(filetypes=(("All files", "*.*"), ("All files", "*.*")))
             with open(name_of_file) as file:
                 file_data = file.read()
-                root.destroy()
-                print("\nfile loaded...\n")
-                return file_data
         except FileNotFoundError:
+            return FileNotFoundError
+        finally:
             root.destroy()
-            print("Error, no file inserted")
+        return file_data
 
     # Created by Adam
     # Different way to read data from file requires user to enter complete file path
@@ -51,7 +50,7 @@ class FileHandler:
         root = Tk()
         file_name = a_plant_class.class_name
         try:
-            with open(directory_name + "/{}.py".format(file_name), "w+") as f:
+            with open(directory_name + "/{}.py".format(file_name.lower()), "w+") as f:
                 f.write(content)
                 root.destroy()
 

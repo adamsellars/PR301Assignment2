@@ -35,3 +35,21 @@ class View:
 
     def exit_file_directory(self):
         print("Exiting file directory dialogue...")
+
+    def user_has_wrong_input(self):
+        user_input = input("\nWrong option. Press enter to try again...")
+        return user_input
+
+    def exit_program(self):
+        print("\ngoodbye..\n")
+
+    def get_user_menu_option(self):
+        user_input = input("Please enter your input: ")
+        return user_input
+
+    def file_loaded_message(self):
+        print("File loaded")
+
+    def file_not_found_message(self):
+        print("Error, file not found")
+
