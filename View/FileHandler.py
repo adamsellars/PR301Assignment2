@@ -26,7 +26,7 @@ class FileHandler:
             with open(path) as file:
                 data = file.read()
                 print("\nfile loaded...\n")
-                assert data is str, "data must be a String data type"
+                # assert data is str, "data must be a String data type"
                 return data
         except FileNotFoundError:
             print("Error, file does not exist!")
