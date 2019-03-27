@@ -14,18 +14,22 @@ class Controller:
         self.my_view = view
         self.all_my_classes = []
         self.my_command_line_interpreter = CommandLineInterpreter(self)
-        self.data = str
-        self.pep8_content = str
+        self.data = ""
+        self.pep8_content = ""
 
     def start_menu(self) -> None:
         incorrect_input = True
         while incorrect_input:
             self.my_view.print_menu()
-            user_input = input("Please enter your input: ")
+            user_input = self.my_view.get_user_menu_option()
 
             # Press 1 to load your text file
             if user_input == "1":
                 self.data = FileHandler.read_file()
+                if self.data == FileNotFoundError:
+                    self.my_view.file_not_found_message()
+                else:
+                    self.my_view.file_loaded_message()
 
             # Press 2 to write from plantuml text to python code
             elif user_input == "2":
@@ -36,8 +40,6 @@ class Controller:
                         self.write_all(directory_name)
                 except TypeError:
                     self.my_view.file_not_loaded_warning()
-                else:
-                    self.my_view.exit_file_directory()
 
             # Press 3 to start command line interpreter
             elif user_input == "3":
@@ -45,10 +47,10 @@ class Controller:
 
             # Press 4 to write file to data base
             elif user_input == "4":
-                SQL.connect_to_db("assignment1")
-                SQL.c.execute("""DROP TABLE if exists class;""")
-                SQL.create_class_table()
-                if self.data is not None:
+                if self.data is not "":
+                    SQL.connect_to_db("assignment1")
+                    SQL.c.execute("""DROP TABLE if exists class;""")
+                    SQL.create_class_table()
                     classes = self.get_class_names()
                     SQL.insert_data_into_table(classes)
                 else:
@@ -84,10 +86,10 @@ class Controller:
             # Exit
             elif user_input == "8":
                 incorrect_input = False
-                print("\ngoodbye..\n")
+                self.my_view.exit_program()
 
             else:
-                input("\nWrong option. Press enter to try again...")
+                self.my_view.user_has_wrong_input()
 
     def find_all(self) -> None:
         data = self.data.split()
