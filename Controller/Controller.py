@@ -49,10 +49,13 @@ class Controller:
             elif user_input == "4":
                 if self.data is not "":
                     error_message = SQL.connect_to_db("assignment1")
+                    print(error_message)
                     if error_message == PermissionError:
                         self.my_view.user_has_no_file_permission()
                     elif error_message == FileNotFoundError:
                         self.my_view.file_not_found_message()
+                    elif error_message == Exception:
+                        self.my_view.generic_error_message()
                     else:
                         SQL.c.execute("""DROP TABLE if exists class;""")
                         SQL.create_class_table()
