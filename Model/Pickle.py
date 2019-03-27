@@ -12,10 +12,15 @@ class Pickler:
         try:
             with open("data.pickle", "wb") as file:
                 pickle.dump(file_data, file)
-                root.destroy()
+        except PermissionError:
+            return PermissionError
         except FileNotFoundError:
-            root.destroy()
             print("Must load a file first")
+            return FileNotFoundError
+        except Exception as e:
+            print(e)
+        finally:
+            root.destroy()
 
     # Adam wrote this
     @staticmethod
@@ -27,9 +32,14 @@ class Pickler:
                 file_data = pickle.load(file)
                 print(file_data)
                 root.destroy()
+        except PermissionError:
+            return PermissionError
         except FileNotFoundError:
-            root.destroy()
             print("Must load a file first")
-
+            return FileNotFoundError
+        except Exception as e:
+            print(e)
+        finally:
+            root.destroy()
 
 

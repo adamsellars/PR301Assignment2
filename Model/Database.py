@@ -11,14 +11,17 @@ class SQL:
     def connect_to_db(db_name):
         try:
             SQL.connection = sqlite3.connect(db_name)
-
+        except PermissionError:
+            return PermissionError
+        except FileNotFoundError:
+            return FileNotFoundError
         except Exception as e:
             print(e)
         else:
             print("Opened database successfully")
-        finally:
             print("Finishing connecting to database")
             SQL.c = SQL.connection.cursor()
+
 
     # Adam wrote this
     @staticmethod

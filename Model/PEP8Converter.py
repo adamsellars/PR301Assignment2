@@ -20,7 +20,7 @@ class PEP8Converter:
     def set_import(plant_relationship: str) -> str:
         if "--" in plant_relationship:
             relationships = plant_relationship.split()
-            import_statement = 'from .{} import {}\n'.format(relationships[1], relationships[1])
+            import_statement = 'from .{} import {}\n'.format((relationships[1].lower()), relationships[1])
             return import_statement
         else:
             return ""
