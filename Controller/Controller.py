@@ -77,6 +77,7 @@ class Controller:
             # Press 6 to load text file, convert data to PEP8 python format then convert file to pickle
             # format in same directory
             elif user_input == "6":
+                self.data = FileHandler.read_file()
                 try:
                     self.data = FileHandler.read_file()
                     self.prep_pep8()
@@ -87,7 +88,7 @@ class Controller:
             # Press 7 to load data from pickle file
             elif user_input == "7":
                 try:
-                    Pickler.unpickle_file()
+                    picklePickler.unpickle_file()
                 except FileNotFoundError:
                     self.my_view.file_not_loaded_warning()
 
