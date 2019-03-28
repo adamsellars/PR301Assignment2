@@ -15,10 +15,9 @@ class Pickler:
         except PermissionError:
             return PermissionError
         except FileNotFoundError:
-            print("Must load a file first")
             return FileNotFoundError
-        except Exception as e:
-            print(e)
+        except:
+            return Exception
         finally:
             root.destroy()
 
@@ -31,14 +30,12 @@ class Pickler:
             with open(name_of_file, "rb") as file:
                 file_data = pickle.load(file)
                 print(file_data)
-                root.destroy()
         except PermissionError:
             return PermissionError
         except FileNotFoundError:
-            print("Must load a file first")
             return FileNotFoundError
-        except Exception as e:
-            print(e)
+        except:
+            return Exception
         finally:
             root.destroy()
 

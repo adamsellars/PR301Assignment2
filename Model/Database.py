@@ -16,8 +16,8 @@ class SQL:
             return PermissionError
         except FileNotFoundError:
             return FileNotFoundError
-        except Exception as e:
-            return e
+        except:
+            return Exception
         else:
             print("Opened database successfully")
             print("Finishing connecting to database")
