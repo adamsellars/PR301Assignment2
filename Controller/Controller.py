@@ -33,12 +33,12 @@ class Controller:
 
             # Press 2 to write from plantuml text to python code
             elif user_input == "2":
-                try:
-                    if self.data is not None:
-                        self.find_all()
-                        directory_name = FileHandler.choose_directory()
-                        self.write_all(directory_name)
-                except TypeError:
+                if self.data is not "":
+                    self.find_all()
+                    directory_name = FileHandler.choose_directory()
+                    self.write_all(directory_name)
+                    self.my_view.files_written_message()
+                else:
                     self.my_view.file_not_loaded_warning()
 
             # Press 3 to start command line interpreter
@@ -49,7 +49,6 @@ class Controller:
             elif user_input == "4":
                 if self.data is not "":
                     error_message = SQL.connect_to_db("assignment1")
-                    print(error_message)
                     if error_message == PermissionError:
                         self.my_view.user_has_no_file_permission()
                     elif error_message == FileNotFoundError:
@@ -66,13 +65,19 @@ class Controller:
 
             # Press 5 to print PEP8 class file to screen from database
             elif user_input == "5":
-                try:
-                    if self.data is not None:
-                        SQL.fetch_all_class_data()
+                if self.data is not "":
+                    sql_database_table = SQL.fetch_all_class_data()
+                    if sql_database_table == PermissionError:
+                        self.my_view.user_has_no_file_permission()
+                    elif sql_database_table == FileNotFoundError:
+                        self.my_view.file_not_found_message()
+                    elif sql_database_table == Exception:
+                        self.my_view.generic_error_message()
                     else:
-                        self.my_view.file_not_loaded_warning()
-                except AttributeError:
+                        self.my_view.print_my_content(sql_database_table)
+                else:
                     self.my_view.file_not_loaded_warning()
+
 
             # Press 6 to load text file, convert data to PEP8 python format then convert file to pickle
             # format in same directory
@@ -88,7 +93,7 @@ class Controller:
             # Press 7 to load data from pickle file
             elif user_input == "7":
                 try:
-                    picklePickler.unpickle_file()
+                    Pickler.unpickle_file()
                 except FileNotFoundError:
                     self.my_view.file_not_loaded_warning()
 
