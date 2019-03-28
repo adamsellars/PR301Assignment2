@@ -59,4 +59,10 @@ class View:
     def generic_error_message(self):
         print("Somethings gone wrong...")
 
+    def print_my_content(self, content):
+        print(content)
+
+    def files_written_message(self):
+        print("files have been written in chosen directory")
+
 
