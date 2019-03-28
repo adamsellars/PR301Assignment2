@@ -11,11 +11,12 @@ class SQL:
     def connect_to_db(db_name):
         try:
             SQL.connection = sqlite3.connect(db_name)
-            raise FileExistsError
         except PermissionError:
             return PermissionError
         except FileNotFoundError:
             return FileNotFoundError
+        except AttributeError:
+            return AttributeError
         except:
             return Exception
         else:
@@ -46,11 +47,22 @@ class SQL:
     # Leroi wrote this
     @staticmethod
     def fetch_all_class_data():
-        SQL.c.execute("SELECT * FROM class")
-        print("fetchall:")
-        result = SQL.c.fetchall()
-        for r in result:
-            print(r)
+        try:
+            SQL.c.execute("SELECT * FROM class")
+            result = SQL.c.fetchall()
+        except PermissionError:
+            return PermissionError
+        except FileNotFoundError:
+            return FileNotFoundError
+        except AttributeError:
+            return AttributeError
+        except:
+            return Exception
+        else:
+            database_list_of_class = ""
+            for r in result:
+                database_list_of_class.join(r + "\n")
+            return database_list_of_class
 
     # Leroi wrote this
     @staticmethod
