@@ -36,8 +36,12 @@ class Controller:
                 if self.data is not "":
                     self.find_all()
                     directory_name = FileHandler.choose_directory()
-                    self.write_all(directory_name)
-                    self.my_view.files_written_message()
+                    if directory_name == FileNotFoundError:
+                        self.my_view.exit_file_directory()
+                    elif directory_name == Exception:
+                        self.my_view.generic_error_message()
+                    else:
+                        self.write_all(directory_name)
                 else:
                     self.my_view.file_not_loaded_warning()
 
@@ -60,6 +64,7 @@ class Controller:
                         SQL.create_class_table()
                         classes = self.get_class_names()
                         SQL.insert_data_into_table(classes)
+                        self.my_view.database_connected_message()
                 else:
                     self.my_view.file_not_loaded_warning()
 
@@ -74,7 +79,7 @@ class Controller:
                     elif sql_database_table == Exception:
                         self.my_view.generic_error_message()
                     else:
-                        self.my_view.print_my_content(sql_database_table)
+                        self.my_view.read_database_file(sql_database_table)
                 else:
                     self.my_view.file_not_loaded_warning()
 
@@ -83,18 +88,36 @@ class Controller:
             # format in same directory
             elif user_input == "6":
                 self.data = FileHandler.read_file()
-                try:
-                    self.data = FileHandler.read_file()
+                if self.data == FileNotFoundError:
+                    self.my_view.file_not_found_message()
+                else:
+                    self.my_view.file_loaded_message()
                     self.prep_pep8()
-                    Pickler.pickle_file(self.pep8_content)
-                except AttributeError:
-                    self.my_view.file_not_loaded_warning()
+                    pickle_status = Pickler.pickle_file(self.pep8_content)
+                    if pickle_status == PermissionError:
+                        self.my_view.user_has_no_file_permission()
+                    elif pickle_status == FileNotFoundError:
+                        self.my_view.file_not_found_message()
+                    elif pickle_status == Exception:
+                        self.my_view.generic_error_message()
+                    else:
+                        self.my_view.pickle_success_message()
+
 
             # Press 7 to load data from pickle file
             elif user_input == "7":
-                try:
-                    Pickler.unpickle_file()
-                except FileNotFoundError:
+                if self.data is not "":
+                    pickle_content = Pickler.unpickle_file()
+                    if pickle_content == PermissionError:
+                        self.my_view.user_has_no_file_permission()
+                    elif pickle_content == FileNotFoundError:
+                        self.my_view.file_not_found_message()
+                    elif pickle_content == Exception:
+                        self.my_view.generic_error_message()
+                    else:
+                        self.my_view.print_my_pickle_content(pickle_content)
+                        self.my_view.file_loaded_message()
+                else:
                     self.my_view.file_not_loaded_warning()
 
             # Exit
@@ -112,9 +135,14 @@ class Controller:
         self.all_my_classes = self.my_class_finder.get_all_my_classes()
 
     def write_all(self, directory_name) -> None:
+        write_file_status = ""
         for a_plant_class in self.all_my_classes:
             content = PEP8Converter.create_class(a_plant_class)
-            FileHandler.write_file(directory_name, content, a_plant_class)
+            write_file_status = FileHandler.write_file(directory_name, content, a_plant_class)
+        if write_file_status == TypeError:
+            self.my_view.exit_file_directory()
+        else:
+            self.my_view.files_written_message()
 
     def command_line_interpreter(self):
         self.my_command_line_interpreter.do_greet("user")
