@@ -45,8 +45,7 @@ class PEP8Converter:
                 relationship += PEP8Converter.create_relationship(a_relationship, counter)
                 import_class += PEP8Converter.set_import(a_relationship)
                 counter += 1
-            return "from typing import TypeVar\n" + import_class + "\n" + "T = TypeVar('T')" + "\n\n\n" +\
-                   class_name + methods + "\n" + relationship + "\n"
+            return import_class + "\n\n" + class_name + methods + "\n" + relationship + "\n"
         else:
             return class_name + methods + relationship
 
