@@ -18,6 +18,9 @@ class Pickler:
             return FileNotFoundError
         except:
             return Exception
+        # else:
+        #     pickled_successfully = True
+        #     return pickled_successfully
         finally:
             root.destroy()
 
@@ -29,13 +32,14 @@ class Pickler:
             name_of_file = filedialog.askopenfilename(filetypes=(("All files", "*.pickle*"), ("All files", "*.pickle*")))
             with open(name_of_file, "rb") as file:
                 file_data = pickle.load(file)
-                print(file_data)
         except PermissionError:
             return PermissionError
         except FileNotFoundError:
             return FileNotFoundError
         except:
             return Exception
+        else:
+            return file_data
         finally:
             root.destroy()
 

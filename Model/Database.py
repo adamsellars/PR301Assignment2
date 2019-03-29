@@ -20,8 +20,6 @@ class SQL:
         except:
             return Exception
         else:
-            print("Opened database successfully")
-            print("Finishing connecting to database")
             SQL.c = SQL.connection.cursor()
 
 
@@ -59,10 +57,7 @@ class SQL:
         except:
             return Exception
         else:
-            database_list_of_class = ""
-            for r in result:
-                database_list_of_class.join(r + "\n")
-            return database_list_of_class
+            return result
 
     # Leroi wrote this
     @staticmethod

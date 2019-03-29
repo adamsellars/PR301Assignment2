@@ -19,6 +19,7 @@ class ClassFinder:
                 a_new_class = list_of_letters[i]
                 a_new_class = NewClass(a_new_class)
                 self.my_classes.append(a_new_class)
+
             # Add attributes
             elif ":" == list_of_letters[i]:
                 if ("(" not in list_of_letters[i - 1]) and (list_of_letters[i - 1][0].islower()):
