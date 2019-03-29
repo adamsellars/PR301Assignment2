@@ -36,12 +36,15 @@ class Controller:
                 if self.data is not "":
                     self.find_all()
                     directory_name = FileHandler.choose_directory()
-                    if directory_name == FileNotFoundError:
-                        self.my_view.exit_file_directory()
+                    if directory_name == TypeError:
+                        self.my_view.file_not_found_message()
                     elif directory_name == Exception:
                         self.my_view.generic_error_message()
                     else:
                         self.write_all(directory_name)
+
+                elif directory_name == FileNotFoundError:
+                    self.my_view.exit_file_directory()
                 else:
                     self.my_view.file_not_loaded_warning()
 
