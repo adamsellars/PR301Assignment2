@@ -59,10 +59,22 @@ class View:
     def generic_error_message(self):
         print("Somethings gone wrong...")
 
-    def print_my_content(self, content):
+    def print_my_pickle_content(self, content):
         print(content)
 
     def files_written_message(self):
         print("files have been written in chosen directory")
+
+    def database_connected_message(self):
+        print("Opened database successfully\nFinishing connecting to database")
+
+    def read_database_file(self, database_file):
+        for classes in database_file:
+            print(classes)
+
+    def pickle_success_message(self):
+        print("Pickled successfully")
+
+
 
 

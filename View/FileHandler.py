@@ -9,11 +9,12 @@ class FileHandler:
     def read_file() -> str:
         root = Tk()
         try:
-            name_of_file = filedialog.askopenfilename(filetypes=(("All files", "*.*"), ("All files", "*.*")))
+            name_of_file = filedialog.askopenfilename(filetypes=(("All files", "*.txt*"), ("All files", "*.txt*")))
             with open(name_of_file) as file:
                 file_data = file.read()
         except FileNotFoundError:
             return FileNotFoundError
+
         finally:
             root.destroy()
         return file_data
@@ -25,13 +26,15 @@ class FileHandler:
         try:
             with open(path) as file:
                 data = file.read()
-                print("\nfile loaded...\n")
                 # assert data is str, "data must be a String data type"
-                return data
+
         except FileNotFoundError:
             print("Error, file does not exist!")
         except PermissionError:
             print("Error, you do not have permission to access this file!")
+        else:
+            print("\nfile loaded...\n")
+            return data
 
     # Created by Leroi
     @staticmethod
@@ -39,9 +42,13 @@ class FileHandler:
         root = Tk()
         try:
             dir_name = filedialog.askdirectory()
-            root.destroy()
+        except TypeError:
+            return TypeError
+        except:
+            return Exception
+        else:
             return dir_name
-        except FileNotFoundError:
+        finally:
             root.destroy()
 
     # Created by Leroi
@@ -52,14 +59,14 @@ class FileHandler:
         try:
             with open(directory_name + "/{}.py".format(file_name.lower()), "w+") as f:
                 f.write(content)
-                root.destroy()
-
         except FileNotFoundError:
-            root.destroy()
-            print("Error, no file inserted")
+            return FileNotFoundError
         except PermissionError:
+            return PermissionError
+        except TypeError:
+            return TypeError
+        finally:
             root.destroy()
-            pass
 
     # Created by Adam different way to handle creating directories
     @staticmethod
@@ -74,6 +81,8 @@ class FileHandler:
             with open(filename, "w+") as file:
                 file.write(content)
         except FileNotFoundError:
-            print("Error, no file inserted")
+            return FileNotFoundError
+            # print("Error, no file inserted")
         except PermissionError:
-            print("Error, you do not have permission to access this file!")
+            return PermissionError
+            # print("Error, you do not have permission to access this file!")

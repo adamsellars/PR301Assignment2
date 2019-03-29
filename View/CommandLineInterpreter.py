@@ -13,6 +13,7 @@ class CommandLineInterpreter(Cmd):
     def do_load_file(self, path):
         self.my_controller.read_file_from_path(path)
 
+
     # Created by Adam
     def do_write_file(self, path):
         self.my_controller.write_file_to_path(path)
